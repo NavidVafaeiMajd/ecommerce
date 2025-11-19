@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import MobileMenu from "./MobileMenu";
 
 type ListItems = {
   name: string;
@@ -15,23 +16,25 @@ type Props = {
 export const HeaderNav = ({ items }: Props) => {
   const pathname = usePathname();
 
-  return (
-    <div>
-      <ul className="flex gap-5 text-[#807D7E]">
-        {items.map((item, index) => {
+  const item =   items.map((item, index) => {
           const isActive = pathname === item.link;
           return (
             <li
               key={index}
-              className={isActive ? "text-foreground font-bold" : ""}
+              className={isActive ? "font-bold" : ""}
             >
               <Link href={item.link}>
                 {item.name}
               </Link>
             </li>
           );
-        })}
+        })
+  return (
+    <div>
+      <ul className="flex gap-5 text-[#807D7E] max-md:hidden">
+        {item}
       </ul>
+      <MobileMenu item={item}/>
     </div>
   );
 };
