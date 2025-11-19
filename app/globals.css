@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -41,11 +42,19 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-searchBg :var(--searchBg);
+  --color-headerBtn :var(--headerbtn);
+   --container-7xl: 600px;
 }
 
+.container{
+  max-width:1237px ;
+}
 :root {
+  --searchBg :#F6F6F6;
+  --headerbtn :#F6F6F6;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(#F6F6F6);
   --foreground: oklch(0.13 0.028 261.692);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);

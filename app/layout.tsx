@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
+
 import localFont from 'next/font/local';
+import { Header } from "@/components/sections/header";
 
 const fontCausten = localFont({
   src: [
     {
-      path: "../asset/fonts/Causten Medium.ttf",
+      path: "../public/fonts/Causten Medium.ttf",
       weight: '400',
       style:'normal'
     },
         {
-      path: "../asset/fonts/Causten Bold.ttf",
+      path: "../public/fonts/Causten Bold.ttf",
       weight: '500',
       style:'bold'
     },
           {
-      path: "../asset/fonts/Causten Regular.ttf",
+      path: "../public/fonts/Causten Regular.ttf",
       weight: '300',
       style:'bold'
     }
@@ -35,7 +37,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={fontCausten.className}>
       <body>
-        {children}
+        <header>
+          <Header />
+        </header>
+        <main className="mt-[108px]!">
+          {children}
+        </main>
       </body>
     </html>
   );
