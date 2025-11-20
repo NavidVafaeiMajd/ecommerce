@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Input } from "../ui/input";
+import { Input } from "../../ui/input";
 import { HeaderBtn } from "./headerBtn";
 interface Props {
   item: ReactNode;
@@ -19,7 +19,7 @@ const MobileMenu = ({ item }: Props) => {
         id="mobile-menu"
       >
         <div className="grid grid-cols-2!">
-          <div className="bg-background! p-5 flex flex-col justify-between h-screen! shadow">
+          <div className="bg-background! p-5 flex flex-col justify-around h-screen! shadow">
             <div className="flex flex-col gap-5">
               <Input
                 variant={"filled"}

@@ -1,7 +1,7 @@
 
 export default function Home() {
   return (
-    <div className="container mx-auto p-5">
+    <div className="">
       salam
     </div>
   );

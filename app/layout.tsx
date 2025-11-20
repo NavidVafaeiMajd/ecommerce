@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import localFont from 'next/font/local';
-import { Header } from "@/components/sections/header";
+import localFont from "next/font/local";
+import { Header } from "@/components/sections/header/header";
 
 const fontCausten = localFont({
   src: [
     {
       path: "../public/fonts/Causten Medium.ttf",
-      weight: '400',
-      style:'normal'
+      weight: "400",
+      style: "normal",
     },
-        {
+    {
       path: "../public/fonts/Causten Bold.ttf",
-      weight: '500',
-      style:'bold'
+      weight: "500",
+      style: "bold",
     },
-          {
+    {
       path: "../public/fonts/Causten Regular.ttf",
-      weight: '300',
-      style:'bold'
-    }
-  ]
-})
+      weight: "300",
+      style: "bold",
+    },
+  ],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -40,9 +40,7 @@ export default function RootLayout({
         <header>
           <Header />
         </header>
-        <main className="md:mt-[108px]!">
-          {children}
-        </main>
+        <main className="mt-[60px]! md:mt-[108px]! container mx-auto p-5">{children}</main>
       </body>
     </html>
   );
