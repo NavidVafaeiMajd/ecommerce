@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const SecoundSec = () => {
   return (
-    <div className="grid grid-cols-2 gap-5">
+    <div className="grid md:grid-cols-2 gap-5">
       <Card className="bg-[url('../public/home/img2.svg')] bg-cover bg-center h-[355px] text-white!">
         <CardContent className="grid grid-cols-2 h-full!">
           <div className="flex flex-col gap-5 justify-center h-full!">

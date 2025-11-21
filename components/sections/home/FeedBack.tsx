@@ -13,7 +13,7 @@ const FeedBack = () => {
       <h3 className="special">FeedBack</h3>
       <Carousel>
         <CarouselContent>
-          <CarouselItem className="basis-1/3">
+          <CarouselItem className="basis-1/1 sm:basis-1/2 md:basis-1/3">
             <div>
               <div>
                 <Image alt="" src={"/home/test1.svg"} width={75} height={75} />
@@ -30,7 +30,7 @@ const FeedBack = () => {
               </div>
             </div>
           </CarouselItem>
-          <CarouselItem className="basis-1/3">
+          <CarouselItem className="basis-1/1 sm:basis-1/2 md:basis-1/3">
             <div>
               <div>
                 <Image alt="" src={"/home/tst1.svg"} width={15} height={15} />
@@ -49,7 +49,7 @@ const FeedBack = () => {
               </div>
             </div>
           </CarouselItem>
-          <CarouselItem className="basis-1/3">
+          <CarouselItem className="basis-1/1 sm:basis-1/2 md:basis-1/3">
             <div>
               <div>
                 <Image alt="" src={"/home/tst1.svg"} width={15} height={15} />
