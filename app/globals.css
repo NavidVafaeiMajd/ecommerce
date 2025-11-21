@@ -53,6 +53,7 @@
 ul{
   list-style: none ;
 }
+
 :root {
   --searchBg :#F6F6F6;
   --headerbtn :#F6F6F6;
@@ -63,7 +64,7 @@ ul{
   --card-foreground: oklch(0.13 0.028 261.692);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.21 0.034 264.665);
+  --primary: #8A33FD;
   --primary-foreground: oklch(0.985 0.002 247.839);
   --secondary: oklch(0.967 0.003 264.542);
   --secondary-foreground: oklch(0.21 0.034 264.665);
@@ -101,7 +102,7 @@ ul{
   --card-foreground: oklch(0.985 0.002 247.839);
   --popover: oklch(0.21 0.034 264.665);
   --popover-foreground: oklch(0.985 0.002 247.839);
-  --primary: oklch(0.928 0.006 264.531);
+  --primary: #8A33FD;
   --primary-foreground: oklch(0.21 0.034 264.665);
   --secondary: oklch(0.278 0.033 256.848);
   --secondary-foreground: oklch(0.985 0.002 247.839);
@@ -135,7 +136,7 @@ ul{
   --card-foreground: oklch(0.985 0.002 247.839);
   --popover: oklch(0.21 0.034 264.665);
   --popover-foreground: oklch(0.985 0.002 247.839);
-  --primary: oklch(0.928 0.006 264.531);
+  --primary: #8A33FD;
   --primary-foreground: oklch(0.21 0.034 264.665);
   --secondary: oklch(0.278 0.033 256.848);
   --secondary-foreground: oklch(0.985 0.002 247.839);
@@ -168,5 +169,10 @@ ul{
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h3.special{
+    @apply relative pl-5 text-3xl font-bold
+        before:absolute before:left-0 before:top-0 before:h-full before:w-1 
+        before:bg-primary before:content-[''] before:rounded-full mb-7;
   }
 }

@@ -40,7 +40,7 @@ export default function RootLayout({
         <header>
           <Header />
         </header>
-        <main className="mt-[60px]! md:mt-[108px]! container mx-auto p-5">{children}</main>
+        <main className="mt-[60px]! md:mt-[108px]! container mx-auto px-5">{children}</main>
       </body>
     </html>
   );
