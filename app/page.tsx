@@ -1,4 +1,5 @@
 import Category from "@/components/sections/home/Category";
+import LimeLight from "@/components/sections/home/LimeLight";
 import NewArrival from "@/components/sections/home/NewArrival";
 import SecoundSec from "@/components/sections/home/SecoundSec";
 import { Slider } from "@/components/sections/home/slider";
@@ -11,7 +12,8 @@ export default function Home() {
       <SecoundSec />
       <NewArrival />
       <Category />
-      <TopBrands/>
+      <TopBrands />
+      <LimeLight/>
     </div>
   );
 }
