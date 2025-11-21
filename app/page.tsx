@@ -2,6 +2,7 @@ import Category from "@/components/sections/home/Category";
 import NewArrival from "@/components/sections/home/NewArrival";
 import SecoundSec from "@/components/sections/home/SecoundSec";
 import { Slider } from "@/components/sections/home/slider";
+import TopBrands from "@/components/sections/home/TopBrands";
 
 export default function Home() {
   return (
@@ -9,7 +10,8 @@ export default function Home() {
       <Slider />
       <SecoundSec />
       <NewArrival />
-      <Category/>
+      <Category />
+      <TopBrands/>
     </div>
   );
 }
