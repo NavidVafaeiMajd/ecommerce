@@ -1,4 +1,5 @@
 import Category from "@/components/sections/home/Category";
+import FeedBack from "@/components/sections/home/FeedBack";
 import LimeLight from "@/components/sections/home/LimeLight";
 import NewArrival from "@/components/sections/home/NewArrival";
 import SecoundSec from "@/components/sections/home/SecoundSec";
@@ -13,7 +14,8 @@ export default function Home() {
       <NewArrival />
       <Category />
       <TopBrands />
-      <LimeLight/>
+      <LimeLight />
+      <FeedBack/>
     </div>
   );
 }
