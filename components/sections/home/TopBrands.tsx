@@ -9,7 +9,7 @@ const TopBrands = () => {
           Up to <span className="text-amber-400">60%</span> off on brands
         </span>
       </div>
-      <div className="flex max-md:flex-col! justify-cente items-center gap-5">
+      <div className="flex max-md:flex-col! justify-center items-center gap-5">
         <Image
           src={"/home/brands/brand1.svg"}
           width={177}
