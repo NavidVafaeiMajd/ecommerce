@@ -1,4 +1,4 @@
-import { ProductItem } from "../ProductItem";
+import { ProductItem } from "../shop/ProductItem";
 
 const LimeLight = () => {
   return (

@@ -3,7 +3,7 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 import { Header } from "@/components/sections/header/header";
-import Footer from "@/components/sections/Footer";
+import Footer from "@/components/sections/shop/Footer";
 
 const fontCausten = localFont({
   src: [
@@ -41,9 +41,11 @@ export default function RootLayout({
         <header>
           <Header />
         </header>
-        <main className="mt-[60px]! md:mt-[108px]! container mx-auto px-5">{children}</main>
+        <main className="mt-[60px]! md:mt-[108px]! min-h-screen container mx-auto px-5">
+          {children}
+        </main>
         <footer>
-          <Footer/>
+          <Footer />
         </footer>
       </body>
     </html>
