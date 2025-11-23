@@ -1,5 +1,5 @@
-import { Checkbox } from "../ui/checkbox";
-import { Label } from "../ui/label";
+import { Checkbox } from "../../ui/checkbox";
+import { Label } from "../../ui/label";
 import { cn } from "@/lib/utils";
 
 const size = ["XS", "S", "M", "L", "XL", "XXL"];
