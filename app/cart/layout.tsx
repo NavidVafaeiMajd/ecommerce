@@ -1,4 +1,4 @@
-import Image from "next/image";
+import RightIcon from "@/public/icons/right";
 import Link from "next/link";
 
 type Props = {
@@ -8,10 +8,10 @@ export default function RootLayout({ children }: Props) {
   return (
     <div>
       <div className="flex flex-col gap-5 py-10">
-        <div className="text-ring flex gap-5">
+        <div className="text-ring flex items-center gap-5">
           {" "}
           <span>Home</span>{" "}
-          <Image alt="" src={"/icons/right.svg"} width={5} height={5} />
+          <RightIcon/>
           <span className="text-foreground">Add To Cart</span>{" "}
         </div>
         <div>
