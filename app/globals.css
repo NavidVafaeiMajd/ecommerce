@@ -45,6 +45,7 @@
   --color-searchBg :var(--searchBg);
   --color-headerBtn :var(--headerbtn);
    --container-7xl: 600px;
+   --color-grayColor :#F6F6F6;
 }
 
 .container{

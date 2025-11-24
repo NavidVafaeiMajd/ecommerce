@@ -1,7 +1,9 @@
 "use client";
 
+import { QuantityCell } from "@/components/sections/cart/QuantityCell";
 import TrashIcon from "@/public/icons/trash";
 import { ColumnDef } from "@tanstack/react-table";
+import { useState } from "react";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -29,6 +31,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "quantity",
     header: "Quantity",
+    cell: () => <div><QuantityCell/></div>
   },
   {
     accessorKey: "shipping",
