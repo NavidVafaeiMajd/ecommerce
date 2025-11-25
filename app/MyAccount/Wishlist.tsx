@@ -30,7 +30,7 @@ function WishlistItem() {
       <div>
         <CliseIcon />
       </div>
-      <div className="relative w-25! h-25! rounded-2xl overflow-hidden">
+      <div className="relative w-20 h-15 md:w-25! md:h-25! rounded-2xl overflow-hidden">
         <Image alt="" src={"/home/test2.svg"} fill className="object-cover! " />
       </div>
       <div className="flex flex-col">
@@ -42,12 +42,11 @@ function WishlistItem() {
           Quantity : <span>1</span>
         </span>
       </div>
-      <div>
+      <div className="flex max-md:flex-col items-center gap-5">
         <span className="text-ring">$20.00</span>
-      </div>
-      <div>
         <Button>Add To Cart</Button>
       </div>
+
     </div>
   );
 }
