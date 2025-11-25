@@ -6,7 +6,7 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <div className="pt-5!">
-      <Tabs defaultValue="MyOrder" className="grid grid-cols-6 ">
+      <Tabs defaultValue="MyOrder" className="grid grid-cols-6 gap-5">
         <TabsList className="col-span-2 text-ring! flex flex-col justify-start! items-start bg-transparent w-full! ">
           <div className="text-foreground! mb-5">
             <h3 className="special mb-2!">Hello Navid!</h3>
