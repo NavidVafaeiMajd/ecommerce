@@ -7,7 +7,6 @@ import { useState } from "react";
 
 export default function MyInfo() {
   const [name, setName] = useState("Navid");
-  const [addNew, setAddNew] = useState(false);
 
   const updateField = async (field: string, newValue: string) => {
     await fetch(`/api/profile/${field}`, {
@@ -22,7 +21,6 @@ export default function MyInfo() {
 
   return (
     <>
-      {!addNew ? (
         <div className="mt-6">
           <EditableField
             label="Your Name"
@@ -62,9 +60,7 @@ export default function MyInfo() {
             </div>
           </div>
         </div>
-      ) : (
-        <>gdfg</>
-      )}
+
     </>
   );
 }
