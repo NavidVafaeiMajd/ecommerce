@@ -2,6 +2,7 @@
 
 import EditableField from "@/components/sections/MyAccount/EditableField";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function MyInfo() {
@@ -47,13 +48,11 @@ export default function MyInfo() {
           <div>
             <div className="flex justify-between items-center my-5">
               <span className="text-xl">Address</span>
-              <Button
-                onClick={() => {
-                  setAddNew(!addNew);
-                }}
+              <Link
+                href="MyInfo/add-new"
               >
                 add new
-              </Button>
+              </Link>
             </div>
             <div className="grid lg:grid-cols-2 gap-5">
               <AddressItem />
