@@ -6,7 +6,7 @@ const Wishlist = () => {
   return (
     <>
       <div className="text-foreground! mb-5">
-        <h3 className="special mb-2!"> Wishlist</h3>
+        <h3 className="text-3xl mb-2!"> Wishlist</h3>
       </div>
       <div className="flex flex-col gap-5">
         {[...Array(5)].map((_, index) => (

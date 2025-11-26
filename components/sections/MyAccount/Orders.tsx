@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Orders = () => {
   return (
@@ -55,7 +56,9 @@ function OrderItem() {
             </div>
           </div>
           <div>
-            <Button>View Details</Button>
+            <Link href="MyAccount/detaile">
+              <Button>View Details</Button>
+            </Link>
           </div>
         </div>
       </div>

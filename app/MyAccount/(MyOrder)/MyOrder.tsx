@@ -6,9 +6,8 @@ const MyOrder = () => {
     <div>
       <div>
         <div className="text-foreground! mb-5">
-          <h3 className="special mb-2!">My Order</h3>
+          <h3 className="text-3xl mb-2!">My Order</h3>
         </div>
-        Make changes to your account here.
       </div>
       <div>
         <Tabs defaultValue="active" className="w-full!">

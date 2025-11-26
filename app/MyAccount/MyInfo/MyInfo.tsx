@@ -21,6 +21,9 @@ export default function MyInfo() {
 
   return (
     <>
+            <div className="text-foreground! mb-5">
+        <h3 className="text-3xl mb-2!"> My Info </h3>
+      </div>
         <div className="mt-6">
           <EditableField
             label="Your Name"
