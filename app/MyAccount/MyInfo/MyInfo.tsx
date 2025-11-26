@@ -79,7 +79,8 @@ const AddressItem = () => {
       </div>
       <div className="flex gap-5 text-foreground!">
         <span>Remove</span>
-        <span>Edit</span>
+        <span>
+          <Link href="MyInfo/edit">Edit</Link> </span>
       </div>
     </div>
   );

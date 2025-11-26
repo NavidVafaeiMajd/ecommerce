@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Props) {
           <div className="flex md:flex-col w-full!">
             <Link
               className={`h-10 w-full rounded-none flex justify-center items-center ${
-                pathname === "/MyAccount/MyOrder"
+                pathname.startsWith("/MyAccount/MyOrder")
                   ? "bg-grayColor border-l-2 border-l-foreground text-ring"
                   : "text-ring"
               }`}
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: Props) {
             </Link>
             <Link
               className={`h-10 w-full rounded-none flex justify-center items-center ${
-                pathname === "/MyAccount/wishlist"
+                pathname.startsWith("/MyAccount/wishlist")
                   ? "bg-grayColor border-l-2 border-l-foreground text-ring"
                   : "text-ring"
               }`}
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: Props) {
             </Link>
             <Link
               className={`h-10 w-full rounded-none flex justify-center items-center ${
-                pathname === "/MyAccount/MyInfo"
+                pathname.startsWith( "/MyAccount/MyInfo")
                   ? "bg-grayColor border-l-2 border-l-foreground text-ring"
                   : "text-ring"
               }`}

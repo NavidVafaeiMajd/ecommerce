@@ -44,7 +44,7 @@ const Page = () => {
     <div>
       <div className="text-foreground! mb-5">
         <h3 className="text-2xl mb-2!">My Order</h3>
-        <p>Add Address</p>
+        <p>Edit Address</p>
       </div>
       <div>
         <Form formProp={form} onSubmit={onSubmit} className="flex flex-col gap-5">
