@@ -1,9 +1,9 @@
-import { TabsContent } from "@/components/ui/tabs";
+import MyOrder from "./(MyOrder)/MyOrder";
 
 const page = () => {
   return (
     <div className="">
-
+      <MyOrder/>
     </div>
   );
 };
