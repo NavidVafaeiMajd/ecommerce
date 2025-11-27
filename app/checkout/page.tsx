@@ -44,8 +44,8 @@ const Page = () => {
     console.log("ok");
   }
   return (
-    <div className="grid grid-cols-6 gap-10 items-start">
-      <div className="col-span-4 flex flex-col gap-10">
+    <div className="grid md:grid-cols-6 gap-10 items-start">
+      <div className="md:col-span-4 flex flex-col gap-10">
         <div>
           <h4 className="text-2xl my-5">Biling Details</h4>
           <Form
@@ -139,7 +139,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="col-span-2 border rounded-md p-5 flex flex-col gap-5">
+      <div className="md:col-span-2 border rounded-md p-5 flex flex-col gap-5">
         <OrderSummary />
       </div>
     </div>

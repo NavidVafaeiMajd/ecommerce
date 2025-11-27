@@ -20,12 +20,12 @@ const MobileMenu = ({ item }: Props) => {
       >
         <div className="grid grid-cols-2!">
           <div className="bg-background! p-5 flex flex-col justify-around h-screen! shadow">
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 max-w-full!">
               <Input
                 variant={"filled"}
                 placeholder="Search"
                 type="search"
-                className="min-w-full! "
+                className="w-full"
               />
               <ul className="flex flex-col items-center gap-5">{item}</ul>
             </div>
