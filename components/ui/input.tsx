@@ -18,7 +18,7 @@ const inputVariants = cva(
         default: "",
         outline: "border border-input bg-transparent",
         filled:
-          "bg-searchBg! py-[12px]! px-[20px]! text-[16px]! border-none! h-[44px]! min-w-[267px]!",
+          "bg-searchBg! py-[12px]! px-[20px]! text-[16px]! border-none! h-[44px]!",
       },
       state: {
         normal: "",
@@ -54,7 +54,8 @@ function Input(
         data-slot="input"
         className={cn(
           inputVariants({ size, variant, state }),
-          isPassword ? "pr-10" : ""
+          isPassword ? "pr-10" : "",
+          "max-w-full! w-full "
         )}
         {...props}
       />

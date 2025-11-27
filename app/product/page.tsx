@@ -1,7 +1,9 @@
 import Breadcrumb from "@/components/sections/breadcrumb";
 import { SizeCheckbox } from "@/components/sections/shop/ SizeCheckbox";
 import { ColorCheckbox } from "@/components/sections/shop/ColorCheckbox";
+import { ColorRadioGroup } from "@/components/sections/shop/ColorRadioGroup";
 import { ProductItem } from "@/components/sections/shop/ProductItem";
+import { SizeRadioGroup } from "@/components/sections/shop/SizeRadioGroup";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -26,11 +28,11 @@ const page = () => {
           </div>
           <div>
             <span>Select Size</span>
-            <SizeCheckbox />
+            <SizeRadioGroup />
           </div>
           <div>
             <span>Color Avalable</span>
-            <ColorCheckbox />
+            <ColorRadioGroup />
           </div>
           <div className="">
             <Button>Add to cart</Button>
