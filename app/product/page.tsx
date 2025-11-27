@@ -1,6 +1,4 @@
 import Breadcrumb from "@/components/sections/breadcrumb";
-import { SizeCheckbox } from "@/components/sections/shop/ SizeCheckbox";
-import { ColorCheckbox } from "@/components/sections/shop/ColorCheckbox";
 import { ColorRadioGroup } from "@/components/sections/shop/ColorRadioGroup";
 import { ProductItem } from "@/components/sections/shop/ProductItem";
 import { SizeRadioGroup } from "@/components/sections/shop/SizeRadioGroup";
@@ -10,9 +8,9 @@ import Image from "next/image";
 const page = () => {
   return (
     <div className="">
-      <div className="grid grid-cols-2 gap-10">
-        <div>
-          <div className="relative w-full! h-[785px]! rounded-2xl overflow-hidden">
+      <div className="grid md:grid-cols-2  gap-10">
+        <div className="max-md:order-2!">
+          <div className="relative w-full! h-[400px] md:h-[785px]! rounded-2xl overflow-hidden">
             <Image
               alt=""
               src={"/home/test2.svg"}
@@ -21,7 +19,7 @@ const page = () => {
             />
           </div>
         </div>
-        <div className="p-5 flex flex-col gap-10">
+        <div className="p-5 flex flex-col gap-10 max-md:order-1!">
           <Breadcrumb />
           <div className="text-2xl">
             <h2>Raven Hoodie With Black Colored Design</h2>

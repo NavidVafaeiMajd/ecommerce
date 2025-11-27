@@ -1,22 +1,24 @@
 import { ReactNode, useState } from "react";
 import { Input } from "../../ui/input";
 import { HeaderBtn } from "./headerBtn";
+import { useNavbar } from "@/context/ToggleNavbar";
 interface Props {
   item: ReactNode;
 }
 const MobileMenu = ({ item }: Props) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {isNavbarOpen  , toggleNavbar} =useNavbar()
   return (
     <div className="md:hidden">
       <div>
         {" "}
-        <span onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
+        <span onClick={toggleNavbar} className="cursor-pointer">
           Menu
         </span>
       </div>
       <div
-        className={` fixed top-0! h-screen! -right-1000 w-full bg-background/10 backdrop-blur ${isOpen ? "right-0" : ""}`}
+        className={` fixed top-0! h-screen! -right-1000 w-full bg-background/10 backdrop-blur ${isNavbarOpen ? "right-0" : ""}`}
         id="mobile-menu"
+        onClick={toggleNavbar}
       >
         <div className="grid grid-cols-2!">
           <div className="bg-background! p-5 flex flex-col justify-around h-screen! shadow">
@@ -32,7 +34,7 @@ const MobileMenu = ({ item }: Props) => {
             <HeaderBtn />
           </div>
           <div className="text-right text-2xl text-bold! p-5">
-            <span onClick={() => setIsOpen(!isOpen)}>close</span>
+            <span onClick={toggleNavbar}>close</span>
           </div>
         </div>
       </div>

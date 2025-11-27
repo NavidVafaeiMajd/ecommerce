@@ -4,6 +4,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { Header } from "@/components/sections/header/header";
 import Footer from "@/components/sections/shop/Footer";
+import { NavbarProvider } from "@/context/ToggleNavbar";
 
 const fontCausten = localFont({
   src: [
@@ -37,17 +38,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontCausten.className}>
-      <body>
-        <header>
-          <Header />
-        </header>
-        <main className="mt-[60px]! md:mt-[108px]! min-h-screen container mx-auto px-5">
-          {children}
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-      </body>
+      <NavbarProvider>
+        <body>
+          <header>
+            <Header />
+          </header>
+
+          <main className="mt-[60px]! md:mt-[108px]! min-h-screen container mx-auto px-5">
+            {children}
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </body>
+      </NavbarProvider>
     </html>
   );
 }

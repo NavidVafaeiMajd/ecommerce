@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MobileMenu from "./MobileMenu";
+import { useNavbar } from "@/context/ToggleNavbar";
 
 type ListItems = {
   name: string;
@@ -15,6 +16,7 @@ type Props = {
 
 export const HeaderNav = ({ items }: Props) => {
   const pathname = usePathname();
+  const {toggleNavbar} =useNavbar()
 
   const item =   items.map((item, index) => {
           const isActive = pathname === item.link;
@@ -22,8 +24,9 @@ export const HeaderNav = ({ items }: Props) => {
             <li
               key={index}
               className={isActive ? "font-bold" : ""}
+              onClick={toggleNavbar}
             >
-              <Link href={item.link}>
+              <Link href={item.link} onClick={toggleNavbar}>
                 {item.name}
               </Link>
             </li>
