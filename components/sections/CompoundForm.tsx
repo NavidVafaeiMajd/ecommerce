@@ -74,7 +74,7 @@ interface FormInputProps<T extends FieldValues> {
   className?: string;
   inputClassName?: string;
   disabled?: boolean;
-  variant?: string
+  variant?: "default" | "outline" | "filled" | null | undefined
 }
 
 function FormInput<T extends FieldValues>({
