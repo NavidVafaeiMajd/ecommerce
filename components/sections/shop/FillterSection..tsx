@@ -34,8 +34,8 @@ export function FillterSection() {
         <AccordionItem value="item-3">
           <AccordionTrigger className="text-xl p-5">Colors</AccordionTrigger>
           <AccordionContent className="flex flex-wrap gap-4 text-lg! p-5 pt-0" >
-            <ColorCheckbox color={"red" } id="dfsdf"/>
-            <ColorCheckbox color="yellow" id="yellogfhw"/>
+            <ColorCheckbox />
+            <ColorCheckbox />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-4">

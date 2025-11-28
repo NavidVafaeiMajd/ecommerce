@@ -38,8 +38,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontCausten.className}>
-      <NavbarProvider>
-        <body>
+      <body>
+        <NavbarProvider>
           <header>
             <Header />
           </header>
@@ -50,8 +50,8 @@ export default function RootLayout({
           <footer>
             <Footer />
           </footer>
-        </body>
-      </NavbarProvider>
+        </NavbarProvider>
+      </body>
     </html>
   );
 }
