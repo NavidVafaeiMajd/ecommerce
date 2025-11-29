@@ -5,11 +5,11 @@ type Props = {
 };
 export default function RootLayout({ children }: Props) {
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-12 md:col-span-3">
+    <div className="md:grid grid-cols-12 gap-10">
+      <div className="md:col-span-3">
         <FillterSection />
       </div>
-      <div className="md:col-span-9">{children}</div>
+      <div className="md:col-span-9 max-md:mt-5">{children}</div>
     </div>
   );
 }

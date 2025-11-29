@@ -11,8 +11,8 @@ interface Props {
 
 const ProductInfo = ({productInfo} : Props) => {
   return (
-    <div className="grid md:grid-cols-2  gap-10">
-      <div className="max-md:order-2!">
+    <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-2  gap-10">
+      <div >
         <div className="relative w-full! h-[400px] md:h-[785px]! rounded-2xl overflow-hidden">
           <Image
             alt=""
@@ -22,7 +22,7 @@ const ProductInfo = ({productInfo} : Props) => {
           />
         </div>
       </div>
-      <div className="p-5 flex flex-col gap-10 max-md:order-1!">
+      <div className="p-5 flex flex-col gap-10">
         <Breadcrumb />
         <div className="text-2xl">
           <h2>{productInfo.product_name}</h2>
