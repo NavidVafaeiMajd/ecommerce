@@ -15,7 +15,7 @@ export function FillterSection() {
       <Accordion
         type="multiple"
         className="w-full text-md! text-ring! border border-t-0!"
-        defaultValue={["item-1", "item-2", "item-3"]}
+        defaultValue={["item-1", "item-2", "item-3" , "item-4"] }
       >
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-xl p-5">Filter</AccordionTrigger>

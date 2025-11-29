@@ -20,6 +20,7 @@ export const ProductItem = ({ product }: Props) => {
             alt=""
             src={ product?.product_img || ""}
             fill
+            loading="lazy"
             className="object-cover! "
           />
         </div>

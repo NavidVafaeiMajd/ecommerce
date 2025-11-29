@@ -7,7 +7,7 @@ export function SizeCheckbox() {
   return (
     <div className="flex flex-wrap items-center gap-3 my-3">
       {size.map((size, index) => (
-        <>
+        <div key={index}>
           <Label
             htmlFor={String(index)}
             className={cn(
@@ -17,7 +17,7 @@ export function SizeCheckbox() {
             <Checkbox id={String(index)} className="hidden" />
             {size}
           </Label>
-        </>
+        </div>
       ))}
     </div>
   );

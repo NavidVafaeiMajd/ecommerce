@@ -9,19 +9,16 @@ async function seedProducts() {
   await sql`
     CREATE TABLE IF NOT EXISTS products (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      product_name VARCHAR(255) NOT NULL,
+      product_name VARCHAR(500) NOT NULL,
       product_color VARCHAR(50),
       product_size VARCHAR(10),
       product_price NUMERIC(10, 2) NOT NULL,
       product_des TEXT,
       category_id VARCHAR(50),
-      gender VARCHAR(20)
+      gender VARCHAR(20),
+      product_img TEXT
     );
   `;
-
-  await sql`ALTER TABLE products
-ADD COLUMN product_img VARCHAR(100) NOT NULL DEFAULT '';
-  `
 
   const insertedProducts = await Promise.all(
     products.map((p) =>
@@ -33,7 +30,8 @@ ADD COLUMN product_img VARCHAR(100) NOT NULL DEFAULT '';
           product_price,
           product_des,
           category_id,
-          gender
+          gender,
+          product_img
         ) VALUES (
           ${p.product_name},
           ${p.product_color ?? null},
@@ -41,7 +39,8 @@ ADD COLUMN product_img VARCHAR(100) NOT NULL DEFAULT '';
           ${p.product_price},
           ${p.product_des ?? null},
           ${p.category_id ?? null},
-          ${p.gender ?? null}
+          ${p.gender ?? null},
+          ${p.product_img ?? null}
         )
         ON CONFLICT DO NOTHING;
       `

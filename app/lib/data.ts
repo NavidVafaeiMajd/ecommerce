@@ -14,3 +14,18 @@ export async function fetchProduct() {
     throw new Error('Failed to fetch product data.');
   }
 }
+
+export async function fetchProductById(id: string) {
+  try {
+    const data = await sql<Product[]>`
+      SELECT *
+      FROM products
+      WHERE products.id = ${id};
+    `;
+
+    return data;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoice.');
+  }
+}
