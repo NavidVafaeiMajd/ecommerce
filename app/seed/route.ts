@@ -18,10 +18,10 @@ async function seedProducts() {
       gender VARCHAR(20)
     );
   `;
-  
+
   await sql`ALTER TABLE products
-ADD COLUMN brand VARCHAR(100) NOT NULL DEFAULT '';
-`
+ADD COLUMN product_img VARCHAR(100) NOT NULL DEFAULT '';
+  `
 
   const insertedProducts = await Promise.all(
     products.map((p) =>

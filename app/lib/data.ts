@@ -1,4 +1,5 @@
 import postgres from 'postgres';
+import { Product } from './definitions';
 
 const sql = postgres(process.env.POSTGRES_URL!, {
   ssl: false,
@@ -6,7 +7,7 @@ const sql = postgres(process.env.POSTGRES_URL!, {
 
 export async function fetchProduct() {
   try {
-    const data = await sql `SELECT * FROM products`;
+    const data = await sql<Product[]> `SELECT * FROM products`;
     return data;
   } catch (error) {
     console.error('Database Error:', error);

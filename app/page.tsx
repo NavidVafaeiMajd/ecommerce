@@ -5,11 +5,8 @@ import NewArrival from "@/components/sections/home/NewArrival";
 import SecoundSec from "@/components/sections/home/SecoundSec";
 import { Slider } from "@/components/sections/home/slider";
 import TopBrands from "@/components/sections/home/TopBrands";
-import { fetchProduct } from "./lib/data";
 
 export default async function Home() {
-  const products = await fetchProduct();
-  console.log(products)
   return (
     <div className="flex flex-col gap-15">
       <Slider />
