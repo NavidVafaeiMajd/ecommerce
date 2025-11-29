@@ -1,12 +1,9 @@
 import { Checkbox } from "../../ui/checkbox";
 import { Label } from "../../ui/label";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 
-
-
-const color = ["red", "blue" , "green"];
+const color = ["red", "blue", "green"];
 export function ColorCheckbox() {
-
   return (
     <div className="flex gap-5 mt-5">
       {color.map((color, index) => {

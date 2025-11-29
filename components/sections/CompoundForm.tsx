@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { createContext, useContext } from "react";
 import {
@@ -16,7 +16,7 @@ import type {
   UseFormReturn,
   SubmitHandler,
 } from "react-hook-form";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 // import Select from "react-select";
 
@@ -74,7 +74,7 @@ interface FormInputProps<T extends FieldValues> {
   className?: string;
   inputClassName?: string;
   disabled?: boolean;
-  variant?: "default" | "outline" | "filled" | null | undefined
+  variant?: "default" | "outline" | "filled" | null | undefined;
 }
 
 function FormInput<T extends FieldValues>({
@@ -85,7 +85,7 @@ function FormInput<T extends FieldValues>({
   className,
   inputClassName,
   disabled,
-  variant
+  variant,
 }: FormInputProps<T>) {
   const { control } = useFormContextSafe<T>();
 

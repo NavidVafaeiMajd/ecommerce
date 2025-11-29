@@ -1,6 +1,6 @@
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 
 const colors = ["red", "blue", "green"];
 
@@ -21,11 +21,7 @@ export function ColorRadioGroup() {
               `has-[[data-state=checked]]:ring-foreground`
             )}
           >
-            <RadioGroupItem
-              value={color}
-              id={color}
-              className="hidden"
-            />
+            <RadioGroupItem value={color} id={color} className="hidden" />
           </Label>
 
           <span className={`text-md text-${color}-600`}>{color}</span>

@@ -1,6 +1,6 @@
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 

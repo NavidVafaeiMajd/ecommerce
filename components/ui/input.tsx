@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
 
 const inputVariants = cva(
@@ -34,16 +34,14 @@ const inputVariants = cva(
   }
 );
 
-function Input(
-  {
-    className,
-    type = "text",
-    size,
-    variant,
-    state,
-    ...props
-  }: React.ComponentProps<"input"> & VariantProps<typeof inputVariants>
-) {
+function Input({
+  className,
+  type = "text",
+  size,
+  variant,
+  state,
+  ...props
+}: React.ComponentProps<"input"> & VariantProps<typeof inputVariants>) {
   const [showPassword, setShowPassword] = React.useState(false);
   const isPassword = type === "password";
 
