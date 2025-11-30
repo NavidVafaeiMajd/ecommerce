@@ -1,8 +1,8 @@
 import { ProductItems } from "@/components/sections/shop/ProductItems";
-import { fetchProduct } from "../lib/data";
+import { fetchGenderProduct, fetchProduct } from "../lib/data";
 
 const page = async () => {
-  const products = await fetchProduct();
+  const products = await fetchGenderProduct("man");
 
   return (
     <div className="md:p-10">

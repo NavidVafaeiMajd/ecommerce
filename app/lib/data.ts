@@ -29,3 +29,21 @@ export async function fetchProductById(id: string) {
     throw new Error('Failed to fetch invoice.');
   }
 }
+
+export async function fetchGenderProduct(
+  query: string,
+) {
+
+  try {
+    const product = await sql<Product[]>`
+      SELECT *
+      FROM products
+      WHERE
+        products.gender ILIKE ${`%${query}%`} 
+    `;
+    return product;
+  } catch (error) {
+      console.error('Database Error:', error);
+      throw new Error('Failed to fetch Product.');
+    }
+}

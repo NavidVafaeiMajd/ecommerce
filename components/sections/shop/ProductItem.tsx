@@ -24,8 +24,8 @@ export const ProductItem = ({ product }: Props) => {
         />
       </div>
       <div className="flex justify-between items-center">
-        <div className="flex flex-col">
-          <Link href={`/product/${product.id}`}>
+        <div >
+          <Link href={`/product/${product.id}`} className="flex flex-col">
             <span className="font-bold">{product?.product_name || ""}</span>
             <span className="font-light">Explore Now!</span>
           </Link>
