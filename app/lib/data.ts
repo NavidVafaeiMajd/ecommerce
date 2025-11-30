@@ -37,12 +37,12 @@ export async function fetchGenderProduct(
   try {
     const product = await sql<Product[]>`
       SELECT *
-      FROM products
-      WHERE
-        products.gender ILIKE ${`%${query}%`} 
-    `;
+      FROM products     
+      WHERE LOWER(products.gender) = LOWER(${query.trim()})    `;
+    
     return product;
-  } catch (error) {
+  }
+   catch (error) {
       console.error('Database Error:', error);
       throw new Error('Failed to fetch Product.');
     }

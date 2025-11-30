@@ -1,8 +1,10 @@
+'use client';
 import { ProductItem } from "./ProductItem";
 import { Product } from "@/app/lib/definitions";
 
-export async function  ProductItems({products} : {products? : Product[]}) {
+export function  ProductItems({products} : {products? : Product[]}) {
   return (
+    <>
     <div>
       <div>
         <h3 className="text-2xl">Shop</h3>
@@ -12,6 +14,6 @@ export async function  ProductItems({products} : {products? : Product[]}) {
           <ProductItem key={index} product={ product } />
         ))}
       </div>
-    </div>
+    </div></>
   );
 }
