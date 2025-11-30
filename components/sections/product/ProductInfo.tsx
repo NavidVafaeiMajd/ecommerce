@@ -23,7 +23,7 @@ const ProductInfo = ({productInfo} : Props) => {
         </div>
       </div>
       <div className="p-5 flex flex-col gap-10">
-        <Breadcrumb />
+        <Breadcrumb gender={productInfo.gender} productName={productInfo.product_name} />
         <div className="text-2xl">
           <h2>{productInfo.product_name}</h2>
         </div>

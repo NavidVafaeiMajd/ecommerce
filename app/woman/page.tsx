@@ -7,7 +7,8 @@ const page = async () => {
   console.log(products);
   return (
     <div className="md:p-10">
-      <ProductItems products={products} />
+      
+      <ProductItems products={products} cat="Woman" />
     </div>
   );
 };
