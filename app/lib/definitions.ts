@@ -1,11 +1,16 @@
-export type Product = {
+export interface Product {
   id: string;
   product_name: string;
-  product_color?: string | null;
-  product_size?: string | null;
-  product_price: number;
-  product_des?: string | null | undefined;
-  category_id?: string | null;
-  gender?: string | null;
-  product_img?: string | null;
+  product_des?: string;
+  category_id?: string;
+  gender?: string;
+  product_img?: string;
+}
+
+export interface ProductVariant {
+  id: string;
+  price: number;
+  stock: number;
+  color: string;
+  size: string;
 }

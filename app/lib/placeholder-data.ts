@@ -21,6 +21,16 @@ export const products = [
     gender: "woman",
     product_img: "https://res.cloudinary.com/dqgtzqkgh/image/upload/w_400,f_auto,q_auto/v1764420032/Rectangle_25_hnnujb.svg"
   },
+    {
+    product_name: "White Graphic Crop Top",
+    product_color: "Yellow",
+    product_size: "M",
+    product_price: 29.00,
+    product_des: "Trendy crop top with bold graphic print on the front.",
+    category_id: "1",
+    gender: "woman",
+    product_img: "https://res.cloudinary.com/dqgtzqkgh/image/upload/w_400,f_auto,q_auto/v1764420032/Rectangle_25_hnnujb.svg"
+  },
   {
     product_name: "Black Sports Shorts",
     product_color: "Black",

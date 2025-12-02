@@ -1,4 +1,4 @@
-import { fetchProductById } from "@/app/lib/data";
+import { fetchProductById, fetchProductWithVariants } from "@/app/lib/data";
 import { products } from "@/app/lib/placeholder-data";
 import Description from "@/components/sections/product/Description";
 import ProductInfo from "@/components/sections/product/ProductInfo";
@@ -9,11 +9,13 @@ export default async function page  (props: { params: Promise<{ id: string }> })
     const params = await props.params;
     const id = params.id;
 
-  const product  = await fetchProductById(id);
+  const { product , variants}  = await fetchProductWithVariants(id);
 
     if (!product ) {
     notFound();
-  }
+    }
+  
+  console.log("Product Details:", variants);
     
   return (
     <div className="">
