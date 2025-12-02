@@ -1,8 +1,8 @@
 'use client';
 import { ProductItem } from "./ProductItem";
-import { Product } from "@/app/lib/definitions";
+import { ProductListItem } from "@/app/lib/definitions";
 
-export function  ProductItems({products , cat} : {products? : Product[], cat?: string}) {
+export function  ProductItems({products , cat} : {products? : ProductListItem[], cat?: string}) {
   return (
     <>
     <div>

@@ -1,51 +1,53 @@
 import postgres from 'postgres';
-import { Product, ProductVariant } from './definitions';
+import { Product, ProductListItem, ProductVariant } from './definitions';
 
 const sql = postgres(process.env.POSTGRES_URL!, {
   ssl: false,
 });
 
-export async function fetchProduct() {
-  try {
-    const data = await sql<Product[]> `SELECT * FROM products`;
-    return data;
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch product data.');
-  }
-}
 
-export async function fetchProductById(id: string) {
+
+export async function fetchProducts(): Promise<ProductListItem[]> {
   try {
-    const data = await sql<Product[]>`
-      SELECT *
-      FROM products
-      WHERE products.id = ${id};
+    const result = await sql<ProductListItem[]>`
+      SELECT 
+        p.*,
+        MIN(pv.price) AS product_price
+      FROM products p
+      LEFT JOIN product_variants pv ON pv.product_id = p.id
+      GROUP BY p.id
+      ORDER BY p.product_name ASC;
     `;
 
-    return data;
+    return result;
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch invoice.');
+    console.error("DB Error:", error);
+    throw new Error("Failed to fetch product list.");
   }
 }
+
 
 export async function fetchGenderProduct(
   query: string,
 ) {
 
   try {
-    const product = await sql<Product[]>`
-      SELECT *
-      FROM products     
-      WHERE LOWER(products.gender) = LOWER(${query.trim()})    `;
-    
+    const product = await sql<ProductListItem[]>`
+        SELECT 
+        p.*,
+        MIN(pv.price) AS product_price
+      FROM products p
+      LEFT JOIN product_variants pv ON pv.product_id = p.id
+      WHERE LOWER(p.gender) = LOWER(${query.trim()})   
+      GROUP BY p.id
+      ORDER BY p.product_name ASC;
+     `;
     return product;
   }
-   catch (error) {
-      console.error('Database Error:', error);
-      throw new Error('Failed to fetch Product.');
-    }
+  catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch Product.');
+  }
 }
 
 

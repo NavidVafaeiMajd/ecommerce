@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Button } from "../../ui/button";
 import LikeIcon from "@/public/icons/like";
-import { Product } from "@/app/lib/definitions";
+import { ProductListItem } from "@/app/lib/definitions";
 import Link from "next/link";
 
 interface Props {
-  product: Product;
+  product: ProductListItem;
 }
 
 export const ProductItem = ({ product }: Props) => {

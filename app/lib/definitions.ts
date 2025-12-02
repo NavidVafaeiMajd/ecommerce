@@ -14,3 +14,7 @@ export interface ProductVariant {
   color: string;
   size: string;
 }
+
+export interface ProductListItem extends Product {
+  product_price: number | null;
+}

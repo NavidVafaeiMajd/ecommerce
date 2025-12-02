@@ -1,5 +1,4 @@
-import { fetchProductById, fetchProductWithVariants } from "@/app/lib/data";
-import { products } from "@/app/lib/placeholder-data";
+import { fetchProductWithVariants } from "@/app/lib/data";
 import Description from "@/components/sections/product/Description";
 import ProductInfo from "@/components/sections/product/ProductInfo";
 import RelatedProduct from "@/components/sections/product/RelatedProduct";
