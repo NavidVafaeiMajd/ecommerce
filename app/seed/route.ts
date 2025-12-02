@@ -16,13 +16,16 @@ async function seedProducts() {
   );
   `;
 
-  for (const p of products) {
+for (const p of products) {
+  const exists = await sql`SELECT 1 FROM products WHERE product_name = ${p.product_name} LIMIT 1`;
+  if (exists.length === 0) {
     await sql`
       INSERT INTO products (product_name, product_des, category_id, gender, product_img)
-      VALUES (${p.product_name}, ${p.product_des}, ${p.category_id}, ${p.gender}, ${p.product_img})
-      ON CONFLICT DO NOTHING;
+      VALUES (${p.product_name}, ${p.product_des}, ${p.category_id}, ${p.gender}, ${p.product_img});
     `;
   }
+}
+
 }
 
 async function seedColors() {
@@ -83,13 +86,16 @@ async function seedProductVariants() {
       await sql`
         INSERT INTO product_variants (product_id, color_id, size_id, price, sku)
         VALUES (${product[0].id}, ${color[0].id}, ${size[0].id}, ${p.product_price}, ${p.product_name || 'SKU'})
-        ON CONFLICT DO NOTHING;
       `;
     }
   }
 }
 
 export async function GET() {
+
+  await sql`TRUNCATE TABLE product_variants, sizes, colors, products RESTART IDENTITY CASCADE;`;
+
+
   try {
     await seedProducts();
     await seedColors();
