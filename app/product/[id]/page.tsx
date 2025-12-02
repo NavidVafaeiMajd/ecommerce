@@ -19,7 +19,7 @@ export default async function page  (props: { params: Promise<{ id: string }> })
     
   return (
     <div className="">
-      <ProductInfo productInfo={product[0]} />
+      <ProductInfo productInfo={product[0]} variants={variants} />
       <Description des={product[0].product_des } />
       <RelatedProduct />
     </div>
