@@ -1,10 +1,12 @@
+'use client';
 import { ProductItems } from "@/components/sections/shop/ProductItems";
 import { fetchProducts } from "../lib/data";
 
-const page = async () => {
-  const products = await fetchProducts();
 
-  console.log("Product List:", products);
+const Page =  () => {
+
+
+
   return (
     <div className="md:p-10">
       <ProductItems products={products} />
@@ -12,4 +14,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Page;
