@@ -1,92 +1,108 @@
-
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { ProductListItem } from "../lib/definitions";
 
-export function useProductList() {
+type Filters = {
+  category_id: string[];
+  gender: string[];
+  color: string[];
+  size: string[];
+  min_price: string;
+  max_price: string;
+};
+
+export function useProductFilter(initialFilters?: Partial<Filters>, gender?: string[]) {
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-  const isFetchingRef = useRef(false); 
+  const isFetchingRef = useRef(false);
 
-  const { ref, inView } = useInView({
-    threshold: 0,
-  });
-
-  const [filters, setFilters] = useState({
-    category_id: "",
-    gender: "",
-    color: "",
-    size: "",
+  const [filters, setFilters] = useState<Filters>({
+    category_id: [],
+    gender: gender || ["woman" , 'man'],
+    color: [],
+    size: [],
     min_price: "",
     max_price: "",
+    ...initialFilters,
   });
 
+  // تابع کمکی برای ساخت پارامترهای url
+  const buildQueryParams = useCallback(() => {
+    const params = new URLSearchParams({
+      page: page.toString(),
+      pageSize: "6",
+    });
+
+    Object.entries(filters).forEach(([key, value]) => {
+      if (!value) return;
+      if (Array.isArray(value)) {
+        value.forEach((v) => {
+          if (v) params.append(key, v);
+        });
+      } else {
+        if (value) params.append(key, value);
+      }
+    });
+    return params.toString();
+  }, [filters, page]);
+
+  // بارگذاری محصولات با مدیریت کامل async و fetch
+  const loadProducts = useCallback(async () => {
+    if (isFetchingRef.current || !hasMore) return;
+
+    isFetchingRef.current = true;
+    setLoading(true);
+
+    try {
+      const query = buildQueryParams();
+      const res = await fetch(`/api/product?${query}`);
+      const data = await res.json();
+
+      setProducts((prev) => (page === 1 ? data.products : [...prev, ...data.products]));
+      setHasMore(Array.isArray(data.products) ? data.products.length === 6 : false);
+    } catch (error) {
+      console.error("Failed to t products:", error);
+    } finally {
+      isFetchingRef.current = false;
+      setLoading(false);
+    }
+  }, [buildQueryParams, page, hasMore]);
+
+  // هر بار page یا filters تغییر کنن، محصولات جدید لود می‌شن
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
+
+  // وقتی فیلتر تغییر کرد، محصولات و صفحه ریست می‌شه و لود جدید انجام می‌شه
   function handleFilterChange(
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) {
-    setFilters((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-    setProducts([]);
+    const { name, value } = e.target;
+
+    setFilters((prev) => {
+      if (Array.isArray(prev[name])) {
+        const list = prev[name] as string[];
+        const newList = list.includes(value)
+          ? list.filter((v) => v !== value)
+          : [...list, value];
+        return { ...prev, [name]: newList };
+      } else {
+        return { ...prev, [name]: value };
+      }
+    });
+
     setPage(1);
     setHasMore(true);
+    setProducts([]);
   }
 
-  useEffect(() => {
-    let cancelled = false;
-    async function load() {
-      if (!hasMore) return;
-      if (isFetchingRef.current) return;
-
-      isFetchingRef.current = true;
-      setLoading(true);
-
-      try {
-        const params = new URLSearchParams({
-          page: page.toString(),
-          pageSize: "20",
-        });
-
-
-
-
-        const res = await fetch(`/api/products?${params.toString()}`);
-        const data = await res.json();
-
-        if (cancelled) return;
-
-        setProducts((prev) =>
-          page === 1 ? data.products : [...prev, ...data.products]
-        );
-        setHasMore(
-          Array.isArray(data.products) ? data.products.length === 20 : false
-        );
-      } catch (e) {
-        console.error(e);
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-          isFetchingRef.current = false;
-        }
-      }
-    }
-
-    load();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [page , filters , hasMore]);
-
-  useEffect(() => {
-    if (inView && hasMore && !loading && !isFetchingRef.current) {
-      isFetchingRef.current = true; 
-      setPage((prev) => prev + 1);
-    }
-  }, [inView, hasMore, loading]);
-
-  return { products, handleFilterChange };
+  return {
+    products,
+    filters,
+    loading,
+    hasMore,
+    setPage,
+    handleFilterChange,
+  };
 }

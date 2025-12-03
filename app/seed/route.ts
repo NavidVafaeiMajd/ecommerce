@@ -113,6 +113,7 @@ async function seedProductVariants() {
 
 export async function GET() {
 
+  await sql`TRUNCATE TABLE product_variants, sizes, colors, products RESTART IDENTITY CASCADE;`;
 
   try {
     await seedCategories()
