@@ -194,8 +194,10 @@ export const products = [
     product_size: "M",
     product_price: 19.00,
     product_des: "Soft and breathable boxer shorts.",
-    category_id: "5",
+    category_id: "4",
     gender: "man",
     product_img: "https://res.cloudinary.com/dqgtzqkgh/image/upload/w_400,f_auto,q_auto/v1764420032/Rectangle_25_hnnujb.svg"
   }
 ];
+
+export const Categories = ['Clothing', 'Electronics', 'Books', 'Toys'];

@@ -1,6 +1,26 @@
 import postgres from 'postgres';
-import { products } from '../lib/placeholder-data';
+import { Categories, products } from '../lib/placeholder-data';
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+
+async function seedCategories() {
+  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS categories (
+      id SERIAL PRIMARY KEY,
+      category_name VARCHAR(100) UNIQUE NOT NULL
+    );
+  `;
+
+
+  for (const name of Categories) {
+    await sql`
+      INSERT INTO categories (category_name) VALUES (${name})
+      ON CONFLICT DO NOTHING;
+    `;
+  }
+}
+
 
 async function seedProducts() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -10,7 +30,7 @@ async function seedProducts() {
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     product_name VARCHAR(500) NOT NULL,
     product_des TEXT,
-    category_id VARCHAR(20) ,
+    category_id INTEGER REFERENCES categories(id) ,
     gender VARCHAR(20),
     product_img TEXT
   );
@@ -93,10 +113,9 @@ async function seedProductVariants() {
 
 export async function GET() {
 
-  await sql`TRUNCATE TABLE product_variants, sizes, colors, products RESTART IDENTITY CASCADE;`;
-
 
   try {
+    await seedCategories()
     await seedProducts();
     await seedColors();
     await seedSizes();

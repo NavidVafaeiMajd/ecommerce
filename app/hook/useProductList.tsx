@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { ProductListItem } from "../lib/definitions";
@@ -49,9 +50,8 @@ export function useProductList() {
           pageSize: "20",
         });
 
-        Object.entries(filters).forEach(([k, v]) => {
-          if (v) params.append(k, v);
-        });
+
+
 
         const res = await fetch(`/api/products?${params.toString()}`);
         const data = await res.json();

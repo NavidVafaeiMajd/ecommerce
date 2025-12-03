@@ -9,7 +9,7 @@ import PriceSlider from "./PriceSlider";
 import { ColorCheckbox } from "./ColorCheckbox";
 import { SizeCheckbox } from "./ SizeCheckbox";
 
-export function FillterSection() {
+export function FillterSection({handleFilterChange}) {
   return (
     <div>
       <Accordion
@@ -41,7 +41,9 @@ export function FillterSection() {
         <AccordionItem value="item-4">
           <AccordionTrigger className="text-xl p-5">Size</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance p-5 pt-0">
-            <SizeCheckbox/>
+            <SizeCheckbox handleFilterChange={handleFilterChange} />
+            <input type="checkbox" name="size" value="s" onClick={(e) => { handleFilterChange(e) }} />
+            <input type="checkbox" name="size" value="m" onClick={(e)=>{handleFilterChange(e)}}/>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

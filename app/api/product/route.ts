@@ -2,39 +2,61 @@ import postgres from "postgres";
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export async function GET(request: Request) {
-  try {
-    const url = new URL(request.url);
+    try {
+        const url = new URL(request.url);
 
-    const filters = {
-      category_id: url.searchParams.get("category_id"),
-      gender: url.searchParams.get("gender"),
-      color: url.searchParams.get("color"),
-      size: url.searchParams.get("size"),
-      min_price: url.searchParams.get("min_price"),
-      max_price: url.searchParams.get("max_price"),
-    };
+        const filters = {
+            category_id: url.searchParams.getAll("category_id"),
+            gender: url.searchParams.getAll("gender"),
+            color: url.searchParams.getAll("color"),
+            size: url.searchParams.getAll("size"),
+            min_price: url.searchParams.get("min_price"),
+            max_price: url.searchParams.get("max_price"),
+        };
+        console.log(filters)
 
-    const page = parseInt(url.searchParams.get("page") || "1");
-    const pageSize = parseInt(url.searchParams.get("pageSize") || "6");
-    const offset = (page - 1) * pageSize;
+        const page = parseInt(url.searchParams.get("page") || "1");
+        const pageSize = parseInt(url.searchParams.get("pageSize") || "6");
+        const offset = (page - 1) * pageSize;
 
-    const conditions: any[] = [];
+        const conditions: any[] = [];
 
-if (filters.category_id) conditions.push(sql`LOWER(p.category_id) = LOWER(${filters.category_id})`);
-if (filters.gender) conditions.push(sql`LOWER(p.gender) = LOWER(${filters.gender})`);
-if (filters.color) conditions.push(sql`LOWER(c.name) = LOWER(${filters.color})`);
-if (filters.size) conditions.push(sql`LOWER(s.name) = LOWER(${filters.size})`);
-if (filters.min_price) conditions.push(sql`pv.price >= ${filters.min_price}`);
-if (filters.max_price) conditions.push(sql`pv.price <= ${filters.max_price}`);
+        if (filters.category_id && filters.category_id.length > 0) {
+            conditions.push(sql`p.category_id = ANY(${filters.category_id})`);
+        }
 
-    const where =
-      conditions.length > 0
-        ? sql`WHERE ${conditions.reduce((prev, curr, i) =>
-            i === 0 ? sql`${curr}` : sql`${prev} AND ${curr}`
-          )}`
-        : sql``;
+        if (filters.gender && filters.gender.length > 0) {
+            const genders = filters.gender.map((g: string) => g.toLowerCase());
+            conditions.push(sql`LOWER(p.gender) = ANY(${genders})`);
+        }
 
-    const products = await sql`
+        if (filters.color && filters.color.length > 0) {
+            const colors = filters.color.map((c: string) => c.toLowerCase());
+            conditions.push(sql`LOWER(c.name) = ANY(${colors})`);
+        }
+
+        if (filters.size && filters.size.length > 0) {
+            const sizes = filters.size.map((s: string) => s.toLowerCase());
+            conditions.push(sql`LOWER(s.name) = ANY(${sizes})`);
+        }
+
+        if (filters.min_price) {
+            conditions.push(sql`pv.price >= ${filters.min_price}`);
+        }
+
+        if (filters.max_price) {
+            conditions.push(sql`pv.price <= ${filters.max_price}`);
+        }
+
+
+        const where =
+            conditions.length > 0
+                ? sql`WHERE ${conditions.reduce((prev, curr, i) =>
+                    i === 0 ? sql`${curr}` : sql`${prev} AND ${curr}`
+                )}`
+                : sql``;
+
+        const products = await sql`
       SELECT p.id, p.product_name, p.product_des, p.category_id, p.gender, p.product_img,
              pv.price, c.name AS color, s.name AS size
       FROM products p
@@ -46,7 +68,7 @@ if (filters.max_price) conditions.push(sql`pv.price <= ${filters.max_price}`);
       LIMIT ${pageSize} OFFSET ${offset}
     `;
 
-    const [{ count }] = await sql`
+        const [{ count }] = await sql`
       SELECT COUNT(*)::int
       FROM products p
       JOIN product_variants pv ON pv.product_id = p.id
@@ -55,15 +77,15 @@ if (filters.max_price) conditions.push(sql`pv.price <= ${filters.max_price}`);
       ${where}
     `;
 
-    return Response.json({
-      products,
-      total: count,
-      page,
-      pageSize,
-    });
+        return Response.json({
+            products,
+            total: count,
+            page,
+            pageSize,
+        });
 
-  } catch (err) {
-    console.error(err);
-    return Response.json({ error: "Internal Server Error" }, { status: 500 });
-  }
+    } catch (err) {
+        console.error(err);
+        return Response.json({ error: "Internal Server Error" }, { status: 500 });
+    }
 }
