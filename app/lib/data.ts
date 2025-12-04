@@ -67,16 +67,31 @@ export async function fetchSize() {
 
 export async function fetchCategory() {
   try {
-    const sizes = await sql<Sizes[]>`
+    const category = await sql<Categories[]>`
       SELECT id, category_name
       FROM categories
       ORDER BY category_name;
     `;
 
-    return sizes;
+    return category;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch sizes.');
+    throw new Error('Failed to fetch category.');
+  }
+}
+
+export async function fetchColors() {
+  try {
+    const color = await sql<Sizes[]>`
+      SELECT id, name
+      FROM colors
+      ORDER BY id;
+    `;
+
+    return color;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch color.');
   }
 }
 

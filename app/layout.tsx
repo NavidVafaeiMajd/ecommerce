@@ -6,7 +6,7 @@ import { Header } from "@/app/components/sections/header/header";
 import Footer from "@/app/components/sections/shop/Footer";
 import { NavbarProvider } from "@/context/ToggleNavbar";
 import SizeProvider from "@/context/Size";
-import { fetchCategory, fetchSize } from "./lib/data";
+import { fetchCategory, fetchColors, fetchSize } from "./lib/data";
 
 const fontCausten = localFont({
   src: [
@@ -40,12 +40,13 @@ export default async function RootLayout({
 }>) {
   const size = await fetchSize();
   const Category = await fetchCategory();
+  const color = await fetchColors();
   console.log("Layout Size:", Category);
   return (
     <html lang="en" className={fontCausten.className}>
       <body>
         <NavbarProvider>
-          <SizeProvider size={size} categories={Category}>
+          <SizeProvider size={size} categories={Category} color={color}>
             <header>
               <Header />
             </header>

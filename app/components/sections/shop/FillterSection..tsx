@@ -32,8 +32,7 @@ export function FillterSection({ handleFilterChange , handlePriceChange }: { han
         <AccordionItem value="item-3">
           <AccordionTrigger className="text-xl p-5">Colors</AccordionTrigger>
           <AccordionContent className="flex flex-wrap gap-4 text-lg! p-5 pt-0">
-            <ColorCheckbox />
-            <ColorCheckbox />
+            <ColorCheckbox handlePriceChange={handlePriceChange} />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-4">
