@@ -4,8 +4,7 @@ import { useContext } from "react";
 
 
 
-export function SizeCheckbox({ handleFilterChange }) {
-
+export function SizeCheckbox({ handleFilterChange }: { handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) {
   const size = useContext(SizeContext);
 
   return (

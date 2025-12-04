@@ -9,7 +9,7 @@ import PriceSlider from "./PriceSlider";
 import { ColorCheckbox } from "./ColorCheckbox";
 import { SizeCheckbox } from "./ SizeCheckbox";
 
-export function FillterSection({ handleFilterChange, }) {
+export function FillterSection({ handleFilterChange , handlePriceChange }: { handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handlePriceChange: ({min_price, max_price}: {min_price: number, max_price: number}) => void }) {
   return (
     <div>
       <Accordion
@@ -28,7 +28,7 @@ export function FillterSection({ handleFilterChange, }) {
         <AccordionItem value="item-2">
           <AccordionTrigger className="text-xl p-5">Price</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance p-5 pt-0">
-            <PriceSlider />
+            <PriceSlider handlePriceChange={handlePriceChange} />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">

@@ -3,19 +3,28 @@
 import { useState } from "react";
 import { Slider } from "@/app/components/ui/slider";
 
-export default function PriceSlider() {
-  const [value, setValue] = useState([0, 13400000]);
-
+export default function PriceSlider({
+  handlePriceChange,
+}: {
+  handlePriceChange: (e: { min_price: number; max_price: number }) => void;
+}) {
+  const [value, setValue] = useState([0, 100]);
+  function handleChange(e: number[]) {
+    setValue(e);
+    handlePriceChange({ min_price: e[0], max_price: e[1] });
+  }
   return (
     <div className="relative w-full py-10">
       <div className="relative">
         <Slider
-          defaultValue={[0, 13400000]}
+          defaultValue={[0, 100]}
           min={0}
-          max={20000000}
-          step={1000}
+          max={100}
+          step={1}
           value={value}
-          onValueChange={setValue}
+          onValueChange={(e) => {
+            handleChange(e);
+          }}
           className="my-slider"
         />
         <div className="flex justify-around items-center mt-5">
@@ -26,8 +35,7 @@ export default function PriceSlider() {
             $ {value[1].toLocaleString()}
           </span>
         </div>
-        {/* Label for Left Thumb */}
-        <div
+        {/* <div
           className="absolute -top-8 left-0 transform -translate-x-1/2 text-sm font-medium"
           style={{
             left: `${(value[0] / 20000000) * 100}%`,
@@ -35,8 +43,6 @@ export default function PriceSlider() {
         >
           {value[0].toLocaleString()}
         </div>
-
-        {/* Label for Right Thumb */}
         <div
           className="absolute -top-8 left-0 transform -translate-x-1/2 text-sm font-medium"
           style={{
@@ -44,7 +50,7 @@ export default function PriceSlider() {
           }}
         >
           {value[1].toLocaleString()}
-        </div>
+        </div> */}
       </div>
     </div>
   );

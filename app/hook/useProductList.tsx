@@ -10,7 +10,7 @@ type Filters = {
   max_price: string;
 };
 
-export function useProductFilter(initialFilters?: Partial<Filters>,) {
+export function useProductFilter(initialFilters?: Partial<Filters>) {
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -19,7 +19,7 @@ export function useProductFilter(initialFilters?: Partial<Filters>,) {
 
   const [filters, setFilters] = useState<Filters>({
     category_id: [],
-    gender:["woman" , 'man'],
+    gender: ["woman", "man"],
     color: [],
     size: [],
     min_price: "",
@@ -59,8 +59,12 @@ export function useProductFilter(initialFilters?: Partial<Filters>,) {
       const res = await fetch(`/api/product?${query}`);
       const data = await res.json();
 
-      setProducts((prev) => (page === 1 ? data.products : [...prev, ...data.products]));
-      setHasMore(Array.isArray(data.products) ? data.products.length === 6 : false);
+      setProducts((prev) =>
+        page === 1 ? data.products : [...prev, ...data.products]
+      );
+      setHasMore(
+        Array.isArray(data.products) ? data.products.length === 6 : false
+      );
     } catch (error) {
       console.error("Failed to t products:", error);
     } finally {
@@ -96,6 +100,18 @@ export function useProductFilter(initialFilters?: Partial<Filters>,) {
     setHasMore(true);
     setProducts([]);
   }
+  function handlePriceChange(
+    {min_price, max_price}: {min_price: number, max_price: number}
+  ) {
+
+    setFilters((prev) => {
+      return { ...prev, min_price: min_price.toString(), max_price: max_price.toString() };
+    });
+
+    setPage(1);
+    setHasMore(true);
+    setProducts([]);
+  }
 
   return {
     products,
@@ -104,5 +120,6 @@ export function useProductFilter(initialFilters?: Partial<Filters>,) {
     hasMore,
     setPage,
     handleFilterChange,
+    handlePriceChange,
   };
 }

@@ -8,7 +8,7 @@ import { useProductFilter } from "@/app/hook/useProductList";
 import { Sizes } from "@/app/lib/definitions";
 
 export default function ArchivePage({ size }: { size: Sizes }) {
-  const { products, filters, loading, hasMore, setPage, handleFilterChange } =
+  const { products, filters, loading, hasMore, setPage, handlePriceChange, handleFilterChange } =
     useProductFilter({ gender: ["woman", "man"] });
 
   const { ref, inView } = useInView({
@@ -24,7 +24,7 @@ export default function ArchivePage({ size }: { size: Sizes }) {
   return (
     <div className="md:grid grid-cols-12 gap-10">
       <div className="md:col-span-3">
-              <FillterSection handleFilterChange={handleFilterChange} size={ size} />
+              <FillterSection handleFilterChange={handleFilterChange} handlePriceChange={handlePriceChange} size={ size} />
       </div>
       <div className="md:col-span-9 max-md:mt-5">
         <ProductItems products={products} />
