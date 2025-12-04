@@ -10,7 +10,7 @@ type Filters = {
   max_price: string;
 };
 
-export function useProductFilter(initialFilters?: Partial<Filters>, gender?: string[]) {
+export function useProductFilter(initialFilters?: Partial<Filters>,) {
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -19,7 +19,7 @@ export function useProductFilter(initialFilters?: Partial<Filters>, gender?: str
 
   const [filters, setFilters] = useState<Filters>({
     category_id: [],
-    gender: gender || ["woman" , 'man'],
+    gender:["woman" , 'man'],
     color: [],
     size: [],
     min_price: "",

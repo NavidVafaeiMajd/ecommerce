@@ -1,13 +1,12 @@
-'use client';
+"use client";
+
 import { useInView } from "react-intersection-observer";
 import { FillterSection } from "@/components/sections/shop/FillterSection.";
 import { ProductItems } from "@/components/sections/shop/ProductItems";
 import { useEffect } from "react";
 import { useProductFilter } from "../hook/useProductList";
 
-const Page =  () => {
-
-
+export default function Page() {
   const {
     products,
     filters,
@@ -15,21 +14,17 @@ const Page =  () => {
     hasMore,
     setPage,
     handleFilterChange,
-  } = useProductFilter({ gender: "woman" });
+  } = useProductFilter({ gender: ["woman" , "man"] } );
 
   const { ref, inView } = useInView({
     threshold: 0,
   });
 
-  // وقتی عنصر پایینی در ویو قرار گرفت، صفحه بعدی لود شود
   useEffect(() => {
     if (inView && hasMore && !loading) {
       setPage((prev) => prev + 1);
     }
   }, [inView, hasMore, loading]);
-
-  console.log(hasMore);
-  console.log(products);
 
   return (
     <div className="md:grid grid-cols-12 gap-10">
@@ -42,6 +37,4 @@ const Page =  () => {
       </div>
     </div>
   );
-};
-
-export default Page;
+}

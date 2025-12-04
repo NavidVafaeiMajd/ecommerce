@@ -56,26 +56,43 @@ export async function GET(request: Request) {
                 )}`
                 : sql``;
 
+        const productIds = await sql`
+            SELECT DISTINCT ON (p.id) p.id
+            FROM products p
+            JOIN product_variants pv ON pv.product_id = p.id
+            JOIN colors c ON c.id = pv.color_id
+            JOIN sizes s ON s.id = pv.size_id
+            ${where}
+            ORDER BY p.id, p.product_name
+            LIMIT ${pageSize} OFFSET ${offset}
+        `;
+
+        const ids = productIds.map((item) => item.id);
+
+        if (ids.length === 0) {
+            return Response.json({
+                products: [],
+                total: 0,
+                page,
+                pageSize,
+            });
+        }
+
         const products = await sql`
-      SELECT p.id, p.product_name, p.product_des, p.category_id, p.gender, p.product_img,
-             pv.price, c.name AS color, s.name AS size
-      FROM products p
-      JOIN product_variants pv ON pv.product_id = p.id
-      JOIN colors c ON c.id = pv.color_id
-      JOIN sizes s ON s.id = pv.size_id
-      ${where}
-      ORDER BY p.product_name
-      LIMIT ${pageSize} OFFSET ${offset}
-    `;
+            SELECT id, product_name, product_des, category_id, gender, product_img
+            FROM products
+            WHERE id = ANY(${ids})
+        `;
 
         const [{ count }] = await sql`
-      SELECT COUNT(*)::int
-      FROM products p
-      JOIN product_variants pv ON pv.product_id = p.id
-      JOIN colors c ON c.id = pv.color_id
-      JOIN sizes s ON s.id = pv.size_id
-      ${where}
-    `;
+            SELECT COUNT(DISTINCT p.id)::int
+            FROM products p
+            JOIN product_variants pv ON pv.product_id = p.id
+            JOIN colors c ON c.id = pv.color_id
+            JOIN sizes s ON s.id = pv.size_id
+            ${where}
+        `;
+
 
         return Response.json({
             products,
