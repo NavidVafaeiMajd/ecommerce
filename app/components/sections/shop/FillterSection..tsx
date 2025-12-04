@@ -20,9 +20,7 @@ export function FillterSection({ handleFilterChange , handlePriceChange }: { han
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-xl p-5">Filter</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance p-5 pt-0">
-            <ProductCheckbox />
-            <ProductCheckbox />
-            <ProductCheckbox />
+            <ProductCheckbox handleFilterChange={handleFilterChange}/>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">

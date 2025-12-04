@@ -65,7 +65,20 @@ export async function fetchSize() {
   }
 }
 
+export async function fetchCategory() {
+  try {
+    const sizes = await sql<Sizes[]>`
+      SELECT id, category_name
+      FROM categories
+      ORDER BY category_name;
+    `;
 
+    return sizes;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch sizes.');
+  }
+}
 
 export async function fetchProductWithVariants(productId: string) {
   try {

@@ -22,7 +22,8 @@ export async function GET(request: Request) {
         const conditions: any[] = [];
 
         if (filters.category_id && filters.category_id.length > 0) {
-            conditions.push(sql`p.category_id = ANY(${filters.category_id})`);
+            const category_ids = filters.category_id.map((g: string) => g.toLowerCase());
+            conditions.push(sql`LOWER(p.category_id) = ANY(${category_ids})`);
         }
 
         if (filters.gender && filters.gender.length > 0) {

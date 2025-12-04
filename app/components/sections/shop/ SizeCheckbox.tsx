@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 
 export function SizeCheckbox({ handleFilterChange }: { handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) {
-  const size = useContext(SizeContext);
+  const size = useContext(SizeContext)[0];
 
   return (
     <div className="flex flex-wrap items-center gap-3 my-3">
