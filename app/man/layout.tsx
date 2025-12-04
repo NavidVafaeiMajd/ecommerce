@@ -1,4 +1,4 @@
-import { FillterSection } from "@/components/sections/shop/FillterSection.";
+import { FillterSection } from "@/app/components/sections/shop/FillterSection.";
 
 type Props = {
   children: React.ReactNode;

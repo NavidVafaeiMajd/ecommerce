@@ -1,6 +1,6 @@
 "use client";
 
-import { QuantityCell } from "@/components/sections/cart/QuantityCell";
+import { QuantityCell } from "@/app/components/sections/cart/QuantityCell";
 import TrashIcon from "@/public/icons/trash";
 import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
@@ -14,7 +14,6 @@ export type Payment = {
   quantity: number;
   shipping: number;
   subtotal: number;
-
 
   [key: string]: string | number | boolean | null | undefined;
 };
@@ -31,7 +30,11 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "quantity",
     header: "Quantity",
-    cell: () => <div><QuantityCell/></div>
+    cell: () => (
+      <div>
+        <QuantityCell />
+      </div>
+    ),
   },
   {
     accessorKey: "shipping",
@@ -44,8 +47,12 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "action",
     header: "Action",
-        cell: () => {
-      return <div className="text-right font-medium"><TrashIcon/></div>
+    cell: () => {
+      return (
+        <div className="text-right font-medium">
+          <TrashIcon />
+        </div>
+      );
     },
   },
 ];

@@ -1,6 +1,6 @@
-import { DataTable } from "@/components/sections/data-table";
+import { DataTable } from "@/app/components/sections/data-table";
 import { columns, Payment } from "./coulomn";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 
 async function getData(): Promise<Payment[]> {
   return [
@@ -50,9 +50,7 @@ const page = async () => {
             <span>$537.00</span>
           </div>
           <div className="flex justify-center p-5">
-            <Button>
-              Proceed To Checkout
-            </Button>
+            <Button>Proceed To Checkout</Button>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
-import EditableField from "@/components/sections/MyAccount/EditableField";
-import { Button } from "@/components/ui/button";
+import EditableField from "@/app/components/sections/MyAccount/EditableField";
+import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -21,49 +21,44 @@ export default function MyInfo() {
 
   return (
     <>
-            <div className="text-foreground! mb-5">
+      <div className="text-foreground! mb-5">
         <h3 className="text-3xl mb-2!"> My Info </h3>
       </div>
-        <div className="mt-6">
-          <EditableField
-            label="Your Name"
-            value={name}
-            onSave={(v) => updateField("first_name", v)}
-          />
+      <div className="mt-6">
+        <EditableField
+          label="Your Name"
+          value={name}
+          onSave={(v) => updateField("first_name", v)}
+        />
 
-          <EditableField
-            label="Email"
-            value="navid@example.com"
-            onSave={(v) => updateField("email", v)}
-          />
-          <EditableField
-            label="Phone Number"
-            value="57657867"
-            onSave={(v) => updateField("last_name", v)}
-          />
-          <EditableField
-            label="Password"
-            value="57657867"
-            onSave={(v) => updateField("last_name", v)}
-          />
-          <div>
-            <div className="flex justify-between items-center my-5">
-              <span className="text-xl">Address</span>
-              <Link
-                href="MyInfo/add-new"
-              >
-                add new
-              </Link>
-            </div>
-            <div className="grid lg:grid-cols-2 gap-5">
-              <AddressItem />
-              <AddressItem />
-              <AddressItem />
-              <AddressItem />
-            </div>
+        <EditableField
+          label="Email"
+          value="navid@example.com"
+          onSave={(v) => updateField("email", v)}
+        />
+        <EditableField
+          label="Phone Number"
+          value="57657867"
+          onSave={(v) => updateField("last_name", v)}
+        />
+        <EditableField
+          label="Password"
+          value="57657867"
+          onSave={(v) => updateField("last_name", v)}
+        />
+        <div>
+          <div className="flex justify-between items-center my-5">
+            <span className="text-xl">Address</span>
+            <Link href="MyInfo/add-new">add new</Link>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-5">
+            <AddressItem />
+            <AddressItem />
+            <AddressItem />
+            <AddressItem />
           </div>
         </div>
-
+      </div>
     </>
   );
 }
@@ -83,7 +78,8 @@ const AddressItem = () => {
       <div className="flex gap-5 text-foreground!">
         <span>Remove</span>
         <span>
-          <Link href="MyInfo/edit">Edit</Link> </span>
+          <Link href="MyInfo/edit">Edit</Link>{" "}
+        </span>
       </div>
     </div>
   );

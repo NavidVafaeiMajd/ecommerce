@@ -1,4 +1,4 @@
-import {} from "@/components/ui/tabs";
+import {} from "@/app/components/ui/tabs";
 import Wishlist from "./Wishlist";
 
 const Page = () => {

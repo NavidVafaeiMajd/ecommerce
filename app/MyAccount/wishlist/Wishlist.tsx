@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import CliseIcon from "@/public/icons/colse";
 import Image from "next/image";
 
@@ -46,7 +46,6 @@ function WishlistItem() {
         <span className="text-ring">$20.00</span>
         <Button>Add To Cart</Button>
       </div>
-
     </div>
   );
 }

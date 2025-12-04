@@ -8,8 +8,8 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/app/components/ui/form";
+import { Input } from "@/app/components/ui/input";
 import type {
   FieldValues,
   Path,
@@ -17,7 +17,7 @@ import type {
   SubmitHandler,
 } from "react-hook-form";
 import { cn } from "@/app/lib/utils";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/app/components/ui/checkbox";
 // import Select from "react-select";
 
 // ---------- Context ----------

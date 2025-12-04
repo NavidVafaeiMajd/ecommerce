@@ -1,5 +1,5 @@
-import { OrderTimeline } from "@/components/sections/MyAccount/OrderTimeline";
-import { Button } from "@/components/ui/button";
+import { OrderTimeline } from "@/app/components/sections/MyAccount/OrderTimeline";
+import { Button } from "@/app/components/ui/button";
 import CliseIcon from "@/public/icons/colse";
 import Image from "next/image";
 import Link from "next/link";

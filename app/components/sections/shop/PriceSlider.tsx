@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Slider } from "@/components/ui/slider";
+import { Slider } from "@/app/components/ui/slider";
 
 export default function PriceSlider() {
   const [value, setValue] = useState([0, 13400000]);

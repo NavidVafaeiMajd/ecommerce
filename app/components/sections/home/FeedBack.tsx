@@ -4,7 +4,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "@/app/components/ui/carousel";
 import Image from "next/image";
 
 const FeedBack = () => {
@@ -18,7 +18,9 @@ const FeedBack = () => {
               <div>
                 <Image alt="" src={"/home/test1.svg"} width={75} height={75} />
               </div>
-              <div className="font-bold my-5 text-2xl"><span >Folyd Miles</span></div>
+              <div className="font-bold my-5 text-2xl">
+                <span>Folyd Miles</span>
+              </div>
               <div>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and

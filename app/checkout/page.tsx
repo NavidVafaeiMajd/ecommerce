@@ -1,7 +1,7 @@
 "use client";
-import OrderSummary from "@/components/sections/checkout/OrderSummary";
-import { Form } from "@/components/sections/CompoundForm";
-import { Button } from "@/components/ui/button";
+import OrderSummary from "@/app/components/sections/checkout/OrderSummary";
+import { Form } from "@/app/components/sections/CompoundForm";
+import { Button } from "@/app/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";

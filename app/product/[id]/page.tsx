@@ -1,27 +1,26 @@
 import { fetchProductWithVariants } from "@/app/lib/data";
-import Description from "@/components/sections/product/Description";
-import ProductInfo from "@/components/sections/product/ProductInfo";
-import RelatedProduct from "@/components/sections/product/RelatedProduct";
+import Description from "@/app/components/sections/product/Description";
+import ProductInfo from "@/app/components/sections/product/ProductInfo";
+import RelatedProduct from "@/app/components/sections/product/RelatedProduct";
 import { notFound } from "next/navigation";
 
-export default async function page  (props: { params: Promise<{ id: string }> })  {
-    const params = await props.params;
-    const id = params.id;
+export default async function page(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+  const id = params.id;
 
-  const { product , variants}  = await fetchProductWithVariants(id);
+  const { product, variants } = await fetchProductWithVariants(id);
 
-    if (!product ) {
+  if (!product) {
     notFound();
-    }
-  
+  }
+
   console.log("Product Details:", variants);
-    
+
   return (
     <div className="">
       <ProductInfo productInfo={product[0]} variants={variants} />
-      <Description des={product[0].product_des } />
+      <Description des={product[0].product_des} />
       <RelatedProduct />
     </div>
   );
-};
-
+}

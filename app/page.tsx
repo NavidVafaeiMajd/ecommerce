@@ -1,10 +1,10 @@
-import Category from "@/components/sections/home/Category";
-import FeedBack from "@/components/sections/home/FeedBack";
-import LimeLight from "@/components/sections/home/LimeLight";
-import NewArrival from "@/components/sections/home/NewArrival";
-import SecoundSec from "@/components/sections/home/SecoundSec";
-import { Slider } from "@/components/sections/home/slider";
-import TopBrands from "@/components/sections/home/TopBrands";
+import Category from "@/app/components/sections/home/Category";
+import FeedBack from "@/app/components/sections/home/FeedBack";
+import LimeLight from "@/app/components/sections/home/LimeLight";
+import NewArrival from "@/app/components/sections/home/NewArrival";
+import SecoundSec from "@/app/components/sections/home/SecoundSec";
+import { Slider } from "@/app/components/sections/home/slider";
+import TopBrands from "@/app/components/sections/home/TopBrands";
 
 export default async function Home() {
   return (
@@ -15,7 +15,7 @@ export default async function Home() {
       <Category />
       <TopBrands />
       <LimeLight />
-      <FeedBack/>
+      <FeedBack />
     </div>
   );
 }

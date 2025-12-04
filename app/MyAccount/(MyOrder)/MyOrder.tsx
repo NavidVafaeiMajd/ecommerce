@@ -1,5 +1,10 @@
-import Orders from "@/components/sections/MyAccount/Orders";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Orders from "@/app/components/sections/MyAccount/Orders";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/app/components/ui/tabs";
 
 const MyOrder = () => {
   return (
@@ -17,7 +22,7 @@ const MyOrder = () => {
             <TabsTrigger value="completed">Completed</TabsTrigger>
           </TabsList>
           <TabsContent value="active">
-            <Orders/>
+            <Orders />
           </TabsContent>
           <TabsContent value="password">Change your password here.</TabsContent>
         </Tabs>

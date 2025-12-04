@@ -1,14 +1,18 @@
 "use client";
 
-import { Form } from "@/components/sections/CompoundForm";
+import { Form } from "@/app/components/sections/CompoundForm";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 
 const formSchema = z.object({
-  firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
-  lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
+  firstName: z
+    .string()
+    .min(2, { message: "First name must be at least 2 characters." }),
+  lastName: z
+    .string()
+    .min(2, { message: "Last name must be at least 2 characters." }),
   Country: z.string().min(2, { message: "Country is required." }),
   componyName: z.string().optional(),
   streatAddress: z.string().min(2, { message: "Street address required." }),
@@ -20,7 +24,6 @@ const formSchema = z.object({
 });
 
 const Page = () => {
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,7 +39,7 @@ const Page = () => {
       postalCode: "",
     },
   });
-  
+
   function onSubmit() {
     console.log("ok");
   }
@@ -47,7 +50,11 @@ const Page = () => {
         <p>Add Address</p>
       </div>
       <div>
-        <Form formProp={form} onSubmit={onSubmit} className="flex flex-col gap-5">
+        <Form
+          formProp={form}
+          onSubmit={onSubmit}
+          className="flex flex-col gap-5"
+        >
           <div className="flex max-lg:flex-col gap-5">
             <Form.Input
               label="Fisrt Name"
@@ -83,44 +90,22 @@ const Page = () => {
               variant="filled"
               required
             />
-            <Form.Input
-              label="Unit"
-              name="Unit"
-              variant="filled"
-              required
-            />
+            <Form.Input label="Unit" name="Unit" variant="filled" required />
           </div>
           <div className="flex max-lg:flex-col gap-5">
-            <Form.Input
-              label="City"
-              name="city"
-              variant="filled"
-              required
-            />
-            <Form.Input
-              label="State"
-              name="state"
-              variant="filled"
-              required
-            />
-                  </div>
-                            <div className="flex max-lg:flex-col gap-5">
-            <Form.Input
-              label="Phone"
-              name="phone"
-              variant="filled"
-              required
-            />
+            <Form.Input label="City" name="city" variant="filled" required />
+            <Form.Input label="State" name="state" variant="filled" required />
+          </div>
+          <div className="flex max-lg:flex-col gap-5">
+            <Form.Input label="Phone" name="phone" variant="filled" required />
             <Form.Input
               label="Postal Code"
               name="postalCode"
               variant="filled"
               required
             />
-                  </div>
-                  <div>
-                      
-                  </div>
+          </div>
+          <div></div>
           <Button type="submit">save</Button>
         </Form>
       </div>

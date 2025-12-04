@@ -18,3 +18,7 @@ export interface ProductVariant {
 export interface ProductListItem extends Product {
   product_price: number | null;
 }
+export interface Sizes {
+  id: string;
+  name: string;
+}

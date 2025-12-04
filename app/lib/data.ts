@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import { Product, ProductListItem, ProductVariant } from './definitions';
+import { Product, ProductListItem, ProductVariant, Sizes } from './definitions';
 
 const sql = postgres(process.env.POSTGRES_URL!, {
   ssl: false,
@@ -47,6 +47,21 @@ export async function fetchGenderProduct(
   catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch Product.');
+  }
+}
+
+export async function fetchSize() {
+  try {
+    const sizes = await sql<Sizes[]>`
+      SELECT id, name
+      FROM sizes
+      ORDER BY name;
+    `;
+
+    return sizes;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch sizes.');
   }
 }
 
