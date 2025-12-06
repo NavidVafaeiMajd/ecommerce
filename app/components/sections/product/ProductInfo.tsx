@@ -1,8 +1,6 @@
 "use client";
 
 import { Button } from "@/app/components/ui/button";
-import { ColorRadioGroup } from "../shop/ColorRadioGroup";
-import { SizeRadioGroup } from "../shop/SizeRadioGroup";
 import Breadcrumb from "./breadcrumb";
 import Image from "next/image";
 import { Product, ProductVariant } from "@/app/lib/definitions";

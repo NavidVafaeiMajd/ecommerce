@@ -5,11 +5,17 @@ import { FillterSection } from "@/app/components/sections/shop/FillterSection.";
 import { ProductItems } from "@/app/components/sections/shop/ProductItems";
 import { useEffect } from "react";
 import { useProductFilter } from "@/app/hook/useProductList";
-import { Sizes } from "@/app/lib/definitions";
 
-export default function ArchivePage({ size }: { size: Sizes }) {
-  const { products, filters, loading, hasMore, setPage, handlePriceChange, handleFilterChange } =
-    useProductFilter({ gender: ["woman", "man"] });
+export default function ArchivePage({ gender }: { gender: string[] }) {
+  const {
+    products,
+    filters,
+    loading,
+    hasMore,
+    setPage,
+    handlePriceChange,
+    handleFilterChange,
+  } = useProductFilter({ gender: gender });
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -24,7 +30,10 @@ export default function ArchivePage({ size }: { size: Sizes }) {
   return (
     <div className="md:grid grid-cols-12 gap-10">
       <div className="md:col-span-3">
-              <FillterSection handleFilterChange={handleFilterChange} handlePriceChange={handlePriceChange} size={ size} />
+        <FillterSection
+          handleFilterChange={handleFilterChange}
+          handlePriceChange={handlePriceChange}
+        />
       </div>
       <div className="md:col-span-9 max-md:mt-5">
         <ProductItems products={products} />

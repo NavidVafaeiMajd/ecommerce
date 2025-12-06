@@ -1,15 +1,9 @@
-import { ProductItems } from "@/app/components/sections/shop/ProductItems";
-import { fetchGenderProduct } from "../lib/data";
+import ArchivePage from "../components/sections/ArchivePage";
 
-const page = async () => {
-  const products = await fetchGenderProduct("man");
-
-  console.log(products);
+export default async function Page() {
   return (
-    <div className="md:p-10">
-      <ProductItems products={products} cat="Man" />
-    </div>
+    <>
+      <ArchivePage gender={["man"]} />
+    </>
   );
-};
-
-export default page;
+}
