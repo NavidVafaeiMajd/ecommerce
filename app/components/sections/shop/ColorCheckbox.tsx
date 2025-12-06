@@ -1,5 +1,4 @@
 import { SizeContext } from "@/context/Size";
-import { Checkbox } from "../../ui/checkbox";
 import { Label } from "../../ui/label";
 import { cn } from "@/app/lib/utils";
 import { useContext } from "react";
@@ -28,7 +27,7 @@ export function ColorCheckbox({
               )}
               style={{ backgroundColor: color.name }}
             >
-              <input onClick={handleFilterChange} type="checkbox" key={index} id={color.id} className="hidden" value={color.name} />
+              <input onClick={handleFilterChange} type="checkbox" key={index} id={color.id} name="color" className="hidden" value={color.name} />
             </Label>
 
             <span className={`text-md text-${color.name}-600!`}>

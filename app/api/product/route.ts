@@ -22,9 +22,10 @@ export async function GET(request: Request) {
         const conditions: any[] = [];
 
         if (filters.category_id && filters.category_id.length > 0) {
-            const category_ids = filters.category_id.map((g: string) => g.toLowerCase());
-            conditions.push(sql`LOWER(p.category_id) = ANY(${category_ids})`);
+            const category_ids = filters.category_id.map((id: string | number) => Number(id));
+            conditions.push(sql`p.category_id = ANY(${category_ids})`);
         }
+
 
         if (filters.gender && filters.gender.length > 0) {
             const genders = filters.gender.map((g: string) => g.toLowerCase());

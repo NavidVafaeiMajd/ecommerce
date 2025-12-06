@@ -34,6 +34,7 @@ export function useProductFilter(initialFilters?: Partial<Filters>) {
       pageSize: "6",
     });
 
+    console.log(filters)
     Object.entries(filters).forEach(([key, value]) => {
       if (!value) return;
       if (Array.isArray(value)) {
