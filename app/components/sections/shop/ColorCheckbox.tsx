@@ -8,7 +8,7 @@ export function ColorCheckbox({
 }: {
   handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
-  const color = useContext(SizeContext)[2];
+  const color = useContext(SizeContext).color
 
   return (
     <div className="flex gap-5 mt-5">
@@ -27,7 +27,7 @@ export function ColorCheckbox({
               )}
               style={{ backgroundColor: color.name }}
             >
-              <input onClick={handleFilterChange} type="checkbox" key={index} id={color.id} name="color" className="hidden" value={color.name} />
+              <input onChange={handleFilterChange} type="checkbox" key={index} id={color.id} name="color" className="hidden" value={color.name} />
             </Label>
 
             <span className={`text-md text-${color.name}-600!`}>

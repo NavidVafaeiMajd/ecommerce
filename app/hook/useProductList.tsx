@@ -83,10 +83,11 @@ export function useProductFilter(initialFilters?: Partial<Filters>) {
   function handleFilterChange(
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) {
-    const { name, value } = e.target;
+    const name = e.target.name as keyof Filters; 
+    const value = e.target.value;
 
     setFilters((prev) => {
-      if (Array.isArray(prev[name])) {
+      if (Array.isArray(prev[name] )) {
         const list = prev[name] as string[];
         const newList = list.includes(value)
           ? list.filter((v) => v !== value)

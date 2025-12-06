@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import { Product, ProductListItem, ProductVariant, Sizes } from './definitions';
+import { Categories, Product, ProductListItem, ProductVariant, Sizes } from './definitions';
 
 const sql = postgres(process.env.POSTGRES_URL!, {
   ssl: false,

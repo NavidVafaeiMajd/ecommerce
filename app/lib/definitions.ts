@@ -22,7 +22,16 @@ export interface Sizes {
   id: string;
   name: string;
 }
+export interface Colors {
+  id: string;
+  name: string;
+}
 export interface Categories {
+  id: string;
+  category_name: string;
+}
+
+export type CategoriesContext = {
   id: string;
   category_name: string;
 }
