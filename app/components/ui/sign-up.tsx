@@ -9,9 +9,10 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { isErrorWithMessage } from "@/app/lib/utils";
 
 const SignUp = () => {
-    const [loading, startTransition] = useTransition();
+  const [loading, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<z.infer<typeof SignUpchema>>({
     resolver: zodResolver(SignUpchema),
@@ -21,7 +22,7 @@ const SignUp = () => {
       password: "",
     },
   });
-  function onSubmit(data: any) {
+  function onSubmit(data: z.infer<typeof SignUpchema>) {
     startTransition(async () => {
       try {
         const { email, password, name } = data;
@@ -42,36 +43,54 @@ const SignUp = () => {
             },
           },
         });
-      } catch (error: any) {
-        toast.error(error?.message || "Something went wrong");
+      } catch (error: unknown) {
+        if (isErrorWithMessage(error)) {
+          toast.error(error.message);
+        } else {
+          toast.error("Something went wrong");
+        }
       }
     });
   }
 
   return (
     <div className="md:col-span-4 flex flex-col gap-10">
-          <div>
+      <div>
         <Form
           formProp={form}
           onSubmit={onSubmit}
           className="flex flex-col gap-5"
         >
           <div className="flex max-lg:flex-col gap-5">
-            <Form.Input disabled={loading} label="Name" name="name" variant="filled" required />
+            <Form.Input
+              disabled={loading}
+              label="Name"
+              name="name"
+              variant="filled"
+              required
+            />
           </div>
           <div className="flex max-lg:flex-col gap-5">
-            <Form.Input disabled={loading} label="Email" name="email" variant="filled" required />
+            <Form.Input
+              disabled={loading}
+              label="Email"
+              name="email"
+              variant="filled"
+              required
+            />
           </div>
           <div className="flex max-lg:flex-col gap-5">
             <Form.Input
               label="Password"
               name="password"
               variant="filled"
-                          required
-                disabled={loading}
+              required
+              disabled={loading}
             />
           </div>
-          <Button type="submit" disabled={loading}>{loading ? "Loading...":"Sign Up"}</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Loading..." : "Sign Up"}
+          </Button>
         </Form>
       </div>
     </div>

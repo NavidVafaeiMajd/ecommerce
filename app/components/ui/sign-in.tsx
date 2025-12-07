@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import z from "zod";
 import { useRouter } from "next/navigation";
 import { signIn } from "@/app/lib/auth-client";
+import { isErrorWithMessage } from "@/app/lib/utils";
 
 const SignIn = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const SignIn = () => {
     },
   });
 
-  function onSubmit(data: any) {
+  function onSubmit(data: z.infer<typeof SignInchema>) {
     console.log(data)
     startTransition(async () => {
       try {
@@ -43,11 +44,16 @@ const SignIn = () => {
             },
           },
         });
-      } catch (error: any) {
-        toast.error(error?.message || "Something went wrong");
+      } catch (error: unknown) {
+        if (isErrorWithMessage(error)) {
+          toast.error(error.message);
+        } else {
+          toast.error("Something went wrong");
+        }
       }
-    });
+});
   }
+
 
   return (
     <div className="md:col-span-4 flex flex-col gap-10">
