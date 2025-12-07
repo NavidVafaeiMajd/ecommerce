@@ -29,8 +29,8 @@ export function ColorCheckbox({
             htmlFor={color.id}
             className={cn(
               "flex items-center gap-0 w-7 h-7 rounded-2xl cursor-pointer",
-              "ring-2 ring-transparent ring-offset-4 ring-offset-background",
-              "peer-checked:ring-white peer-checked:border-amber-500"
+              "ring-2 ring-transparent ring-offset-2 ring-offset-background border",
+              "peer-checked:ring-foreground"
             )}
             style={{ backgroundColor: color.name }}
           >

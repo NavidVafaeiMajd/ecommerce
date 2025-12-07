@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { ProductListItem } from "../lib/definitions";
+import { useDebouncedCallback } from 'use-debounce';
 
 type Filters = {
   category_id: string[];
@@ -102,9 +103,9 @@ export function useProductFilter(initialFilters?: Partial<Filters>) {
     setHasMore(true);
     setProducts([]);
   }
-  function handlePriceChange(
+  const handlePriceChange = useDebouncedCallback((
     {min_price, max_price}: {min_price: number, max_price: number}
-  ) {
+  ) =>{
 
     setFilters((prev) => {
       return { ...prev, min_price: min_price.toString(), max_price: max_price.toString() };
@@ -113,7 +114,7 @@ export function useProductFilter(initialFilters?: Partial<Filters>) {
     setPage(1);
     setHasMore(true);
     setProducts([]);
-  }
+  },300)
 
   return {
     products,
