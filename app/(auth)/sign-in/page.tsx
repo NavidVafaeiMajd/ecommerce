@@ -14,8 +14,17 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/app/components/ui/tabs";
+import { auth } from "@/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-const Page = () => {
+const Page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (session) {
+    redirect("/MyAccount");
+  }
   return (
     <>
       <Tabs defaultValue="sign-in" className="items-center">
@@ -28,8 +37,7 @@ const Page = () => {
             <CardHeader>
               <CardTitle>Sign In</CardTitle>
               <CardDescription>
-                Login to yout account. Click save when you&apos;re
-                done.
+                Login to yout account. Click save when you&apos;re done.
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">
@@ -40,11 +48,10 @@ const Page = () => {
         </TabsContent>
         <TabsContent value="sign-up" className="max-md:w-full!  md:w-1/2">
           <Card>
-            <CardHeader> 
+            <CardHeader>
               <CardTitle>Sign Up</CardTitle>
               <CardDescription>
-                Create your account. Click save when you&apos;re
-                done.
+                Create your account. Click save when you&apos;re done.
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">

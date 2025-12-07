@@ -2,6 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { signOut } from "../lib/auth-client";
 
 type Props = {
   children: React.ReactNode;
@@ -9,6 +13,8 @@ type Props = {
 
 export default function RootLayout({ children }: Props) {
   const pathname = usePathname();
+  const [loading, startTransition] = useTransition();
+  const router = useRouter();
   return (
     <div className="pt-5!">
       <div defaultValue="MyOrder" className="grid md:grid-cols-6 gap-5">
@@ -55,7 +61,22 @@ export default function RootLayout({ children }: Props) {
                   ? "bg-grayColor border-l-2 border-l-foreground text-ring"
                   : "text-ring"
               }`}
-              href={"/MyAccount/Logout"}
+              href={"/sign-in"}
+              onClick={() => {
+                startTransition(async () => {
+                  try {
+                    await signOut({
+                      fetchOptions: {
+                        onSuccess: () => {
+                          router.push("/sign-in");
+                        },
+                      },
+                    });
+                  } catch (error: any) {
+                    toast.error(error?.message || "Something went wrong");
+                  }
+                });
+              }}
             >
               Logout
             </Link>
