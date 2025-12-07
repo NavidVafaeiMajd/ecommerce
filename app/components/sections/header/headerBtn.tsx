@@ -16,7 +16,7 @@ export const HeaderBtn = () => {
 
   return (
     <div className="flex gap-2">
-      <Link href={"/MyAccount/wishlist"}>
+      <Link href={"/MyAccount/wishlist"} >
         <Button
           variant={isActivewishlist ? "headerActive" : "header"}
           className="w-12 h-12 flex items-center justify-center"

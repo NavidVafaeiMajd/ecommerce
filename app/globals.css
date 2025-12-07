@@ -55,6 +55,9 @@ ul{
   list-style: none ;
 }
 
+a{
+  cursor: pointer !important;
+}
 :root {
   --grayColor : #F6F6F6;
   --searchBg :#F6F6F6;
