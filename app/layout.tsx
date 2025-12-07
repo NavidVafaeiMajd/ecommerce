@@ -7,6 +7,7 @@ import Footer from "@/app/components/sections/shop/Footer";
 import { NavbarProvider } from "@/context/ToggleNavbar";
 import SizeProvider from "@/context/Size";
 import { fetchCategory, fetchColors, fetchSize } from "./lib/data";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontCausten = localFont({
   src: [
@@ -47,6 +48,7 @@ export default async function RootLayout({
       <body>
         <NavbarProvider>
           <SizeProvider size={size} categories={Category} color={color}>
+            <Toaster />
             <header>
               <Header />
             </header>
