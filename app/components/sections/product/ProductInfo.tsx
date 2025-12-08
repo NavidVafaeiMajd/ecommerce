@@ -5,6 +5,7 @@ import Breadcrumb from "./breadcrumb";
 import Image from "next/image";
 import { Product, ProductVariant } from "@/app/lib/definitions";
 import { useState } from "react";
+import AddToCart from "../addToCart";
 
 interface Props {
   productInfo: Product;
@@ -22,21 +23,22 @@ const ProductInfo = ({ productInfo, variants }: Props) => {
   const price = selectedVariant?.price;
   const stock = selectedVariant?.stock ?? 0;
 
-  const handleAddToCart = async () => {
-    if (!selectedVariant) return;
-    await fetch("/api/cart", {
-      method: "POST",
-      body: JSON.stringify({
-        variant_id: selectedVariant.id,
-        quantity: 1,
-      }),
-    });
-    console.log("Added to cart:", selectedVariant);
-    alert("Added to cart!");
-  };
 
   const sizes = [...new Set(variants.map((v) => v.size))];
   const colors = [...new Set(variants.map((v) => v.color))];
+
+  const cartItem =
+  selectedVariant && productInfo
+    ? {
+        productId: productInfo.id,
+        variantId: selectedVariant.id,
+        size: selectedVariant.size,
+        color: selectedVariant.color,
+        price: selectedVariant.price,
+        qty: 1,
+      }
+    : null;
+
   return (
     <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-2  gap-10">
       <div>
@@ -80,16 +82,11 @@ const ProductInfo = ({ productInfo, variants }: Props) => {
             />
           ))}
         </div>
-        <div className="">
-          <Button
-            disabled={!selectedVariant || stock < 1}
-            onClick={handleAddToCart}
-            className="px-6 py-3 rounded-lg bg-purple-600 disabled:bg-gray-500"
-          >
-            Add to cart
-          </Button>
+        <div className="flex gap-5 items-center">
+          {cartItem && <AddToCart product={cartItem} />}
 
-          <span className="price border border-black rounded-md p-2 px-3 ml-5">
+
+          <span className="price border border-foreground rounded-md p-2 px-3 ml-5">
             {!price ? "not available " : price}
           </span>
         </div>

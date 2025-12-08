@@ -56,3 +56,21 @@ export const SignInchema = z.object({
     .string()
     .min(6, { message: "Password must be at least 6 characters." }),
 });
+
+export interface CartItem {
+  productId: string;
+  variantId: string;
+  size: string;
+  color: string;
+  price: number;
+  qty: number;
+}
+
+export interface CartContextType {
+  items: CartItem[];
+  loading: boolean;
+  addItem: (item: CartItem) => void;
+  removeItem: (productId: string) => void;
+  clearCart: () => void;
+  setItems: (items: CartItem[]) => void;
+}

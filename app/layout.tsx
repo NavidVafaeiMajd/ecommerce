@@ -8,6 +8,8 @@ import { NavbarProvider } from "@/context/ToggleNavbar";
 import SizeProvider from "@/context/Size";
 import { fetchCategory, fetchColors, fetchSize } from "./lib/data";
 import { Toaster } from "@/components/ui/sonner";
+import SyncWrapper from "./components/sections/cart/SyncWrapper";
+import { CartProvider } from "@/context/cart-context";
 
 const fontCausten = localFont({
   src: [
@@ -46,21 +48,24 @@ export default async function RootLayout({
   return (
     <html lang="en" className={fontCausten.className}>
       <body>
-        <NavbarProvider>
-          <SizeProvider size={size} categories={Category} color={color}>
-            <Toaster />
-            <header>
-              <Header />
-            </header>
+        <CartProvider>
+          <SyncWrapper />
+          <NavbarProvider>
+            <SizeProvider size={size} categories={Category} color={color}>
+              <Toaster />
+              <header>
+                <Header />
+              </header>
 
-            <main className="mt-[60px]! md:mt-[108px]! min-h-screen container mx-auto px-5">
-              {children}
-            </main>
-            <footer>
-              <Footer />
-            </footer>
-          </SizeProvider>
-        </NavbarProvider>
+              <main className="mt-[60px]! md:mt-[108px]! min-h-screen container mx-auto px-5">
+                {children}
+              </main>
+              <footer>
+                <Footer />
+              </footer>
+            </SizeProvider>
+          </NavbarProvider>
+        </CartProvider>
       </body>
     </html>
   );
