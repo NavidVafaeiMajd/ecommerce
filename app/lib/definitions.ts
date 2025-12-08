@@ -59,17 +59,20 @@ export const SignInchema = z.object({
 
 export interface CartItem {
   productId: string;
+  productName: string;
   variantId: string;
   size: string;
   color: string;
   price: number;
   qty: number;
+  subtotal : number
 }
 
 export interface CartContextType {
   items: CartItem[];
   loading: boolean;
   addItem: (item: CartItem) => void;
+  decreaseItem: (item: CartItem) => void;
   removeItem: (productId: string) => void;
   clearCart: () => void;
   setItems: (items: CartItem[]) => void;

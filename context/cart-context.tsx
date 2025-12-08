@@ -15,7 +15,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (exists) {
         return prev.map((p) =>
           p.variantId === item.variantId
-            ? { ...p, qty: p.qty + 1}
+            ? { ...p, qty: p.qty + 1 , subtotal: Number(p.subtotal) + Number(p.price)}
+            : p
+        );
+      }
+      return [...prev, item];
+    });
+  };
+    
+    const decreaseItem = (item: CartItem) => {
+    setItems((prev) => {
+      const exists = prev.find((p) => p.variantId === item.variantId);
+      if (exists) {
+        return prev.map((p) =>
+          p.variantId === item.variantId
+            ? { ...p, qty: p.qty - 1 , subtotal: Number(p.subtotal) - Number(p.price)}
             : p
         );
       }
@@ -23,15 +37,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const removeItem = (productId: string) => {
-    setItems((prev) => prev.filter((p) => p.productId !== productId));
+  const removeItem = (variantId: string) => {
+    setItems((prev) => prev.filter((p) => p.variantId !== variantId));
   };
 
   const clearCart = () => setItems([]);
 
   return (
     <CartContext.Provider
-      value={{ items, loading, addItem, removeItem, clearCart, setItems }}
+      value={{ items, loading, addItem, decreaseItem, removeItem, clearCart, setItems }}
     >
       {children}
     </CartContext.Provider>

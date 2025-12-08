@@ -1,6 +1,8 @@
+'use client'
 import { DataTable } from "@/app/components/sections/data-table";
 import { columns, Payment } from "./coulomn";
 import { Button } from "@/app/components/ui/button";
+import { useCart } from "@/context/cart-context";
 
 async function getData(): Promise<Payment[]> {
   return [
@@ -29,12 +31,13 @@ async function getData(): Promise<Payment[]> {
   ];
 }
 
-const page = async () => {
-  const data = await getData();
+const Page =  () => {
+      const { items } = useCart();
+  
 
   return (
     <div className="">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={items} />
       <div>
         <div className="md:w-1/2 bg-grayColor! p-5 mt-5">
           <div className="flex justify-between">
@@ -58,4 +61,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Page;

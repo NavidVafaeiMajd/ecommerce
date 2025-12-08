@@ -23,21 +23,22 @@ const ProductInfo = ({ productInfo, variants }: Props) => {
   const price = selectedVariant?.price;
   const stock = selectedVariant?.stock ?? 0;
 
-
   const sizes = [...new Set(variants.map((v) => v.size))];
   const colors = [...new Set(variants.map((v) => v.color))];
 
   const cartItem =
-  selectedVariant && productInfo
-    ? {
-        productId: productInfo.id,
-        variantId: selectedVariant.id,
-        size: selectedVariant.size,
-        color: selectedVariant.color,
-        price: selectedVariant.price,
+    selectedVariant && productInfo
+      ? {
+          productId: productInfo.id,
+          productName: productInfo.product_name,
+          variantId: selectedVariant.id,
+          size: selectedVariant.size,
+          color: selectedVariant.color,
+          price: selectedVariant.price,
         qty: 1,
-      }
-    : null;
+        subtotal: Number(selectedVariant.price)
+        }
+      : null;
 
   return (
     <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-2  gap-10">
@@ -82,14 +83,16 @@ const ProductInfo = ({ productInfo, variants }: Props) => {
             />
           ))}
         </div>
-        <div className="flex gap-5 items-center">
-          {cartItem && <AddToCart product={cartItem} />}
-
-
-          <span className="price border border-foreground rounded-md p-2 px-3 ml-5">
-            {!price ? "not available " : price}
-          </span>
-        </div>
+        {stock > 0 ? (
+          <div className="flex gap-5 items-center">
+            {cartItem && <AddToCart product={cartItem} />}
+            <span className="price border border-foreground rounded-md p-2 px-3 ml-5">
+              {!price ? "not available " : price}
+            </span>
+          </div>
+        ) : (
+          <div className="text-red-500 font-semibold">Out of Stock</div>
+        )}
         <hr />
       </div>
     </div>
